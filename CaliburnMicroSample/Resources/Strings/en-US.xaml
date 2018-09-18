@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="AppName">Caliburn.Micro Sample WPF</sys:String>
+    <sys:String x:Key="GoBack">Go Back</sys:String>
+    <sys:String x:Key="OpenFile">Open File</sys:String>
+    <sys:String x:Key="SaveFile">Save File</sys:String>
+    <sys:String x:Key="Settings">Settings</sys:String>
+    <sys:String x:Key="AppExit">Exit</sys:String>
+    <sys:String x:Key="LangSetting">Language: </sys:String>
+    <sys:String x:Key="DropFileHere">Drag a file and drop here</sys:String>
+    <sys:String x:Key="SendMessage">Send Message</sys:String>
+</ResourceDictionary>
