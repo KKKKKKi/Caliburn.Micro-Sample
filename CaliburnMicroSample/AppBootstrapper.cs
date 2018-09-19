@@ -29,7 +29,7 @@
                 .PerRequest<DragDropViewModel>(key: nameof(DragDropViewModel))
                 .Singleton<MainViewModel>(key: nameof(MainViewModel))
                 .Singleton<SettingViewModel>(key: nameof(SettingViewModel))
-                .Singleton<ConductorViewModel>(key: nameof(ConductorViewModel));
+                .PerRequest<ConductorViewModel>(key: nameof(ConductorViewModel));
         }
 
         protected override void OnStartup(object s, StartupEventArgs e)
