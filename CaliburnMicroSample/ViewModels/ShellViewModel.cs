@@ -5,6 +5,7 @@
     using System.Windows.Controls;
     using Models;
     using Services;
+    using Views;
 
     public class ShellViewModel : Screen, IHandle<SimpleMessage>
     {
@@ -47,6 +48,11 @@
                 (b, p) => { });
         }
 
+        public void NewWindow()
+        {
+            _windowManager.ShowWindow(IoC.Get<ConductorViewModel>(nameof(ConductorViewModel)));
+        }
+
         public void RegisterFrame(Frame frame)
         {
             _navigationService = new FrameAdapter(frame);
@@ -60,15 +66,23 @@
         public void NavToSettings()
         {
             _navigationService.NavigateToViewModel(typeof(SettingViewModel));
+            /*
+            ShellView view = GetView() as ShellView;
+            if (view != null)
+            {
+                view.WindowState = WindowState.Minimized;
+                _windowManager.ShowDialog(IoC.Get<SettingViewModel>(key: nameof(SettingViewModel)));
+            }
+            */
         }
 
         public void AppExit() => Application.Current.Shutdown();
 
-        public void Handle(SimpleMessage message)
+        public async void Handle(SimpleMessage message)
         {
             if (message.Sender is SettingViewModel)
             {
-                _windowManager.ShowDialog(new DragDropViewModel());
+                await _dialogService.ShowMessage(message.Content, message.Content);
             }
         }
     }

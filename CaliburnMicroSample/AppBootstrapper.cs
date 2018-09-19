@@ -28,7 +28,8 @@
             _container.Singleton<ShellViewModel>(key: nameof(ShellViewModel))
                 .PerRequest<DragDropViewModel>(key: nameof(DragDropViewModel))
                 .Singleton<MainViewModel>(key: nameof(MainViewModel))
-                .Singleton<SettingViewModel>(key: nameof(SettingViewModel));
+                .Singleton<SettingViewModel>(key: nameof(SettingViewModel))
+                .Singleton<ConductorViewModel>(key: nameof(ConductorViewModel));
         }
 
         protected override void OnStartup(object s, StartupEventArgs e)
@@ -38,9 +39,6 @@
 
         protected override void OnExit(object s, EventArgs e)
         {
-            // 保存程序设置
-            // Properties.Settings.Default.Save();
-            // Application.Current.MainWindow
         }
 
         protected override object GetInstance(Type service, string key)
@@ -58,6 +56,11 @@
             _container.BuildUp(instance);
         }
 
+        /// <summary>
+        /// 全局错误处理
+        /// </summary>
+        /// <param name="s">sender</param>
+        /// <param name="e">event args</param>
         protected override void OnUnhandledException(object s, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;

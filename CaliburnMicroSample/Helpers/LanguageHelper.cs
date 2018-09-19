@@ -4,6 +4,9 @@
     using System.Windows;
     using System.Windows.Data;
 
+    /// <summary>
+    /// 动态加载语言资源
+    /// </summary>
     public static class LanguageHelper
     {
         public static void LoadXamlStringsResource(string resourceName)

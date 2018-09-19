@@ -6,6 +6,7 @@
     <sys:String x:Key="GoBack">Go Back</sys:String>
     <sys:String x:Key="OpenFile">Open File</sys:String>
     <sys:String x:Key="SaveFile">Save File</sys:String>
+    <sys:String x:Key="NewWindow">Show a new window</sys:String>
     <sys:String x:Key="Settings">Settings</sys:String>
     <sys:String x:Key="AppExit">Exit</sys:String>
     <sys:String x:Key="LangSetting">Language: </sys:String>

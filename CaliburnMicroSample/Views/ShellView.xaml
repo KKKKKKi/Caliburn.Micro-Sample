@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Width="960"
         Height="540" 
+        WindowStartupLocation="CenterScreen"
         Title="{DynamicResource AppName}">
 
     <Grid>
@@ -162,6 +163,11 @@
                     ToolTip="{DynamicResource SaveFile}"
                     DockPanel.Dock="Left"
                     cal:Message.Attach="[Event Click]=[Action SaveFile]" />
+            <Button x:Name="NewWindow" 
+                    Style="{StaticResource IconButtonStyle}" 
+                    Content="&#xF2D2;"
+                    ToolTip="{DynamicResource NewWindow}"
+                    DockPanel.Dock="Left"/>
             <Button x:Name="MenuButton" 
                     Style="{StaticResource IconButtonStyle}"
                     FontFamily="pack://application:,,,/Resources/Fonts/#Font Awesome 5 Free Solid"
