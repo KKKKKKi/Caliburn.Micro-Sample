@@ -12,6 +12,14 @@
             "简体中文", "English",
         };
 
+        public SettingViewModel()
+        {
+            if (View.InDesignMode)
+            {
+                Languages = new BindableCollection<string>() { "语言" };
+            }
+        }
+
         private string _selectedLanguage;
 
         public string SelectedLanguage
