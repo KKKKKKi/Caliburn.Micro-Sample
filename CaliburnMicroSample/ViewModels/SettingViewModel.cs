@@ -5,12 +5,7 @@
 
     public class SettingViewModel : Screen
     {
-        private IEventAggregator _eventAggregator;
-
-        public SettingViewModel(IEventAggregator eventAggregator)
-        {
-            _eventAggregator = eventAggregator;
-        }
+        private IEventAggregator _eventAggregator => IoC.Get<IEventAggregator>(nameof(EventAggregator));
 
         public BindableCollection<string> Languages { get; } = new BindableCollection<string>()
         {

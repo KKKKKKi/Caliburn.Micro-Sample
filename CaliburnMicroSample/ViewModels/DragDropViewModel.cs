@@ -7,9 +7,16 @@
 
     public class DragDropViewModel : Screen
     {
-        private readonly SimpleContainer _container = IoC.Get<SimpleContainer>();
-        private readonly IDialogServiceEx _dialogService = IoC.Get<IDialogServiceEx>(key: nameof(DialogService));
-        private readonly INavigationService _navigationService = IoC.Get<INavigationService>(key: "ContentFrame");
+        private SimpleContainer _container => IoC.Get<SimpleContainer>();
+        // private IDialogServiceEx _dialogService => IoC.Get<IDialogServiceEx>(key: nameof(DialogService));
+        // 使用构造方法
+        private IDialogServiceEx _dialogService;
+        private INavigationService _navigationService => IoC.Get<INavigationService>(key: "ContentFrame");
+
+        public DragDropViewModel(IDialogServiceEx dialogService)
+        {
+            _dialogService = dialogService;
+        }
 
         public void OnDragEnter(Grid s, DragEventArgs e)
         {

@@ -3,8 +3,8 @@
     using Caliburn.Micro;
     public class MainViewModel : Screen
     {
-        private readonly SimpleContainer _container = IoC.Get<SimpleContainer>();
-        private readonly INavigationService _navigationService = IoC.Get<INavigationService>(key: "ContentFrame");
+        private SimpleContainer _container => IoC.Get<SimpleContainer>();
+        private INavigationService _navigationService => IoC.Get<INavigationService>(key: "ContentFrame");
 
         private string _filePath = null;
 
