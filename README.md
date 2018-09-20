@@ -8,4 +8,4 @@
 
 ![Settings](./images/Snipaste_2018-09-19_10-23-19.png)
 
-![new window](./images/Snipaste_2018-09-19_10-25-23.png)
+![new window](./images/Snipaste_2018-09-20_09-24-09.png)
