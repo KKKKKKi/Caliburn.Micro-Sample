@@ -7,13 +7,14 @@
         xmlns:v="clr-namespace:CaliburnMicroSample.Views"
         mc:Ignorable="d"
         Width="640" Height="360"
-        Title="ConductorView">
+        Title="{DynamicResource ConductorTitle}"
+        cal:Message.Attach="[Key Escape]=[Action WinEscape]">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Margin="40,20">
@@ -30,6 +31,6 @@
             </ListBox.ItemsPanel>
         </ListBox>
 
-        <ContentControl cal:View.Model="{Binding ActiveItem}" Grid.Row="2" Margin="40,20"/>
+        <ContentControl cal:View.Model="{Binding ActiveItem}" Grid.Row="2" Margin="40,20" />
     </Grid>
 </Window>

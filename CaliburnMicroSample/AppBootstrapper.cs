@@ -4,7 +4,9 @@
     using System;
     using System.Collections.Generic;
     using System.Windows;
+    using System.Windows.Input;
     using System.Windows.Threading;
+    using Input;  // Key Bindings Convertion
     using Services;
     using ViewModels;
 
@@ -30,6 +32,34 @@
                 .Singleton<MainViewModel>(key: nameof(MainViewModel))
                 .Singleton<SettingViewModel>(key: nameof(SettingViewModel))
                 .PerRequest<ConductorViewModel>(key: nameof(ConductorViewModel));
+
+            // Key Bindings Convertion
+            var defaultCreateTrigger = Parser.CreateTrigger;
+
+            Parser.CreateTrigger = (target, triggerText) =>
+            {
+                if (triggerText == null)
+                    return defaultCreateTrigger(target, null);
+
+                string triggerDetail = triggerText.Replace("[", string.Empty).Replace("]", string.Empty);
+
+                string[] splits = triggerDetail.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+
+                switch (splits[0])
+                {
+                    case "Key":
+                        Key key = (Key)Enum.Parse(typeof(Key), splits[1], true);
+                        return new KeyTrigger { Key = key };
+
+                    case "Gesture":
+                        MultiKeyGesture mkg = (MultiKeyGesture)(new MultiKeyGestureConverter()).ConvertFrom(splits[1]);
+                        return new KeyTrigger { Modifiers = mkg.KeySequences[0].Modifiers, Key = mkg.KeySequences[0].Keys[0] };
+
+                    default: break;
+                }
+
+                return defaultCreateTrigger(target, triggerText);
+            };
         }
 
         protected override void OnStartup(object s, StartupEventArgs e)

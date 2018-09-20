@@ -91,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\LanguageHelper.cs" />
+    <Compile Include="Input\KeySequence.cs" />
+    <Compile Include="Input\KeyTrigger.cs" />
+    <Compile Include="Input\MultiKeyGesture.cs" />
+    <Compile Include="Input\MultiKeyGestureConverter.cs" />
     <Compile Include="Models\SimpleMessage.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogServiceEx.cs" />

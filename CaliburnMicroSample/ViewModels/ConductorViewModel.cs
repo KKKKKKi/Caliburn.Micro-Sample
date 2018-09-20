@@ -28,5 +28,10 @@
         }
 
         public bool CanCloseTab => Items.Count > 1;
+
+        public void WinEscape()
+        {
+            (GetView() as Views.ConductorView).Close();
+        }
     }
 }

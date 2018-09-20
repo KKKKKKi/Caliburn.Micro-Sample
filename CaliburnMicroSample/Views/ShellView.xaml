@@ -9,7 +9,8 @@
         Width="960"
         Height="540" 
         WindowStartupLocation="CenterScreen"
-        Title="{DynamicResource AppName}">
+        Title="{DynamicResource AppName}"
+        cal:Message.Attach="[Key Enter] = [Action NewWindow];[Gesture Ctrl+Alt+X] = [Action AppExit]">
 
     <Grid>
         <Grid.Resources>
@@ -43,65 +44,6 @@
                                     <Setter TargetName="RootBorder" Property="Background" Value="Orange" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="IconToggleBtnStyle" TargetType="{x:Type ToggleButton}">
-                <Setter Property="SnapsToDevicePixels" Value="True" />
-                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Font Awesome 5 Free Solid" />
-                <Setter Property="FontSize" Value="24" />
-                <Setter Property="Width" Value="48" />
-                <Setter Property="Height" Value="48" />
-                <Setter Property="Foreground" Value="White" />
-                <Setter Property="Background" Value="DeepSkyBlue" />
-                <Setter Property="Margin" Value="1" />
-                <Setter Property="Cursor" Value="Hand" />
-                <Setter Property="IsThreeState" Value="False" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ToggleButton}">
-                            <Grid>
-                                <Border x:Name="LayoutRoot"
-                                        Width="{TemplateBinding Width}"
-                                        Height="{TemplateBinding Height}"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter x:Name="ContentPresenter"
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
-                                                      Content="{TemplateBinding Content}" />
-                                </Border>
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup x:Name="CommonStates">
-                                        <VisualState x:Name="Normal" />
-                                        <VisualState x:Name="MouseOver">
-                                            <Storyboard>
-                                                <ColorAnimationUsingKeyFrames 
-                                                    Storyboard.TargetName="LayoutRoot"
-                                                    Storyboard.TargetProperty="Background.Color">
-                                                    <EasingColorKeyFrame KeyTime="0" Value="SkyBlue" />
-                                                </ColorAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="Pressed">
-                                            <Storyboard>
-                                                <ColorAnimationUsingKeyFrames 
-                                                    Storyboard.TargetName="LayoutRoot"
-                                                    Storyboard.TargetProperty="Background.Color">
-                                                    <EasingColorKeyFrame KeyTime="0" Value="LightSkyBlue" />
-                                                </ColorAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="Disabled" />
-                                    </VisualStateGroup>
-                                    <VisualStateGroup x:Name="CheckStates">
-                                        <VisualState x:Name="Checked" />
-                                        <VisualState x:Name="Unchecked" />
-                                        <VisualState x:Name="Indeterminate" />
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                            </Grid>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
