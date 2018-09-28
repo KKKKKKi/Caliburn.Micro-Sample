@@ -127,7 +127,7 @@
             // 配置文件反序列化失败，默认设置
             if (App.configs == null)
             {
-                App.configs = new Configs() { Language = "简体中文", };
+                App.configs = GetDefaultConfigs();
             }
         }
 
@@ -146,6 +146,18 @@
             writer.Write(json);
             writer.Flush();
             writer.Close();
+        }
+
+        /// <summary>
+        /// 默认设置
+        /// </summary>
+        /// <returns>configs</returns>
+        private Configs GetDefaultConfigs()
+        {
+            return new Configs()
+            {
+                Language = "简体中文",
+            };
         }
 
         // 给设置发送消息
