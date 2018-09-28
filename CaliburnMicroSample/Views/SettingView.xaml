@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:cal="http://www.caliburnproject.org"
       xmlns:v="clr-namespace:CaliburnMicroSample.Views"
-      xmlns:vm="clr-namespace:CaliburnMicroSample.ViewModels"
+      xmlns:design="clr-namespace:CaliburnMicroSample.Design"
       mc:Ignorable="d" 
       d:DesignWidth="800"
       d:DesignHeight="450"
-      d:DataContext="{d:DesignInstance Type={x:Type vm:SettingViewModel}, IsDesignTimeCreatable=True}"
+      d:DataContext="{d:DesignInstance Type={x:Type design:SettingViewModel}, IsDesignTimeCreatable=True}"
       cal:Bind.AtDesignTime="True">
 
     <!-- Design Time Support -->
@@ -20,7 +20,7 @@
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Margin="2">
-                <TextBlock VerticalAlignment="Center">
+                <TextBlock x:Name="LanguageLabel" VerticalAlignment="Center">
                     <!-- Text="{DynamicResource LangSetting}" -->
                     <TextBlock.Text>
                         <Binding Source="{StaticResource Strings}" XPath="string[@key='LangSetting']" />

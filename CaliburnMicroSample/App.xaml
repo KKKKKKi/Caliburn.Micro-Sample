@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Resources/Strings/zh-Hans-CN.xaml" />
                 <ResourceDictionary>
                     <XmlDataProvider x:Key="Strings" 
+                                     Source="pack://application:,,,/Resources/Strings/zh-Hans-CN.xml"
                                      XPath="language/strings"
                                      IsAsynchronous="False" />
                 </ResourceDictionary>

@@ -23,7 +23,7 @@
 
         public SettingViewModel()
         {
-            if (View.InDesignMode)
+            if (Execute.InDesignMode)
             {
                 Languages = new BindableCollection<string>() { "语言" };
                 _selectedLanguage = Languages[0];
