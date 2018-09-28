@@ -7,8 +7,11 @@
         xmlns:v="clr-namespace:CaliburnMicroSample.Views"
         mc:Ignorable="d"
         Width="640" Height="360"
-        Title="{DynamicResource ConductorTitle}"
         cal:Message.Attach="[Key Escape]=[Action WinEscape]">
+    <!-- Title="{DynamicResource ConductorTitle}" -->
+    <Window.Title>
+        <Binding Source="{StaticResource Strings}" XPath="string[@key='ConductorTitle']" />
+    </Window.Title>
 
     <Grid>
         <Grid.RowDefinitions>

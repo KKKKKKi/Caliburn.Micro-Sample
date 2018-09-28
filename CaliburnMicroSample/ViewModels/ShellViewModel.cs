@@ -5,9 +5,8 @@
     using System.Windows.Controls;
     using Models;
     using Services;
-    using Views;
 
-    public class ShellViewModel : Screen, IHandle<SimpleMessage>
+    public class ShellViewModel : Screen, ICleanup, IHandle<SimpleMessage>
     {
         private SimpleContainer _container => IoC.Get<SimpleContainer>();
         private IDialogServiceEx _dialogService => IoC.Get<IDialogServiceEx>(key: nameof(DialogService));
@@ -18,11 +17,6 @@
         public ShellViewModel()
         {
             _eventAggregator.Subscribe(this);
-        }
-
-        public void Unsubscribe()
-        {
-            _eventAggregator.Unsubscribe(this);
         }
 
         public void GoBack()
@@ -82,8 +76,13 @@
         {
             if (message.Sender is SettingViewModel)
             {
-                await _dialogService.ShowMessage(message.Content, message.Content);
+                await _dialogService.ShowMessage(message.Content, message.Title);
             }
+        }
+
+        public void Cleanup()
+        {
+            _eventAggregator.Unsubscribe(this);  // 取消事件订阅
         }
     }
 }

@@ -5,7 +5,7 @@
     using System.Windows.Controls;
     using Services;
 
-    public class DragDropViewModel : Screen
+    public class DragDropViewModel : Screen, ICleanup
     {
         private SimpleContainer _container => IoC.Get<SimpleContainer>();
         // private IDialogServiceEx _dialogService => IoC.Get<IDialogServiceEx>(key: nameof(DialogService));
@@ -55,6 +55,14 @@
                     await _dialogService.ShowError("Invalid File", "Error", null, () => { });
                 }
             }
+        }
+
+        /// <summary>
+        /// Cleanup
+        /// </summary>
+        public void Cleanup()
+        {
+            // TODO: Clean up
         }
     }
 }

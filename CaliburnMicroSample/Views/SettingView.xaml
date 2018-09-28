@@ -20,12 +20,20 @@
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Margin="2">
-                <TextBlock Text="{DynamicResource LangSetting}" />
+                <TextBlock>
+                    <!-- Text="{DynamicResource LangSetting}" -->
+                    <TextBlock.Text>
+                        <Binding Source="{StaticResource Strings}" XPath="string[@key='LangSetting']" />
+                    </TextBlock.Text>
+                </TextBlock>
                 <ComboBox x:Name="Languages" />
             </StackPanel>
-            <Button x:Name="MessageToShell" 
-                    Content="{DynamicResource SendMessage}" 
-                    Margin="2" />
+            <Button x:Name="MessageToShell" Margin="2">
+                <!-- Content="{DynamicResource SendMessage}" -->
+                <Button.Content>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='SendMessage']" />
+                </Button.Content>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

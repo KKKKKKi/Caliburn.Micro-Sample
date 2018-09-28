@@ -1,7 +1,7 @@
 ﻿namespace CaliburnMicroSample.ViewModels
 {
     using Caliburn.Micro;
-    public class MainViewModel : Screen
+    public class MainViewModel : Screen, Services.ICleanup
     {
         private SimpleContainer _container => IoC.Get<SimpleContainer>();
         private INavigationService _navigationService => IoC.Get<INavigationService>(key: "ContentFrame");
@@ -18,6 +18,11 @@
                     //
                 }
             }
+        }
+
+        public void Cleanup()
+        {
+            // TODO: Cleanup
         }
     }
 }

@@ -19,12 +19,10 @@
 
         public static void LoadXmlStringsResource(string resourceName)
         {
-            XmlDataProvider provider = Application.Current.TryFindResource("Strings") as XmlDataProvider;
-
-            if (provider == null)
+            if (!(Application.Current.TryFindResource("Strings") is XmlDataProvider provider))
                 return;
 
-            provider.Source = new Uri(resourceName);
+            provider.Source = new Uri(resourceName, UriKind.RelativeOrAbsolute);
 
             provider.Refresh();
         }

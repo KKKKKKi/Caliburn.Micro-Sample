@@ -3,7 +3,7 @@
     using Caliburn.Micro;
     using System.Windows.Media;
 
-    public class TabViewModel : Screen
+    public class TabViewModel : Screen, Services.ICleanup
     {
         public BindableCollection<string> Messages { get; } = new BindableCollection<string>();
 
@@ -22,6 +22,11 @@
         protected override void OnDeactivate(bool close)
         {
             Messages.Add($"{DisplayName} Deactivated, close: {close}");
+        }
+
+        public void Cleanup()
+        {
+            // TODO: Cleanup
         }
     }
 }

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<language name="简体中文">
+  <strings>
+    <string key="AppName">Caliburn.Micro 例子 WPF</string>
+    <string key="GoBack">返回</string>
+    <string key="OpenFile">打开文件</string>
+    <string key="SaveFile">保存文件</string>
+    <string key="NewWindow">打开新窗口(Enter)</string>
+    <string key="Settings">设置</string>
+    <string key="AppExit">退出(Ctrl+Alt+X)</string>
+    <string key="LangSetting">语言：</string>
+    <string key="DropFileHere">拖放文件到这里</string>
+    <string key="SendMessage">发送消息</string>
+    <string key="ConductorTitle">Conductor 窗口(ESC关闭)</string>
+  </strings>
+</language>

@@ -4,13 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:v="clr-namespace:CaliburnMicroSample.Views"
         mc:Ignorable="d"
         Width="960"
         Height="540" 
         WindowStartupLocation="CenterScreen"
-        Title="{DynamicResource AppName}"
         cal:Message.Attach="[Key Enter] = [Action NewWindow];[Gesture Ctrl+Alt+X] = [Action AppExit]">
+    <Window.Title>
+        <Binding Source="{StaticResource Strings}" XPath="string[@key='AppName']" />
+    </Window.Title>
 
     <Grid>
         <Grid.Resources>
@@ -93,23 +96,40 @@
                     Style="{StaticResource IconButtonStyle}" 
                     FontFamily="pack://application:,,,/Resources/Fonts/#Font Awesome 5 Free Solid"
                     Content="&#xF060;"
-                    ToolTip="{DynamicResource GoBack}"
-                    DockPanel.Dock="Left"/>
+                    DockPanel.Dock="Left">
+                <!-- if use xaml resource -->
+                <!-- ToolTip="{DynamicResource GoBack}" -->
+                <Button.ToolTip>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='GoBack']" />
+                </Button.ToolTip>
+            </Button>
             <Button Style="{StaticResource IconButtonStyle}"
                     Content="&#xF07C;" 
-                    ToolTip="{DynamicResource OpenFile}" 
                     DockPanel.Dock="Left"
-                    cal:Message.Attach="[Event Click]=[Action OpenFile]" />
+                    cal:Message.Attach="[Event Click]=[Action OpenFile]">
+                <!-- ToolTip="{DynamicResource OpenFile}"  -->
+                <Button.ToolTip>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='OpenFile']" />
+                </Button.ToolTip>
+            </Button>
             <Button Style="{StaticResource IconButtonStyle}"
                     Content="&#xF0C7;" 
-                    ToolTip="{DynamicResource SaveFile}"
                     DockPanel.Dock="Left"
-                    cal:Message.Attach="[Event Click]=[Action SaveFile]" />
+                    cal:Message.Attach="[Event Click]=[Action SaveFile]">
+                <!-- ToolTip="{DynamicResource SaveFile}" -->
+                <Button.ToolTip>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='SaveFile']" />
+                </Button.ToolTip>
+            </Button>
             <Button x:Name="NewWindow" 
                     Style="{StaticResource IconButtonStyle}" 
                     Content="&#xF2D2;"
-                    ToolTip="{DynamicResource NewWindow}"
-                    DockPanel.Dock="Left"/>
+                    DockPanel.Dock="Left">
+                <!-- ToolTip="{DynamicResource NewWindow}" -->
+                <Button.ToolTip>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='NewWindow']" />
+                </Button.ToolTip>
+            </Button>
             <Button x:Name="MenuButton" 
                     Style="{StaticResource IconButtonStyle}"
                     FontFamily="pack://application:,,,/Resources/Fonts/#Font Awesome 5 Free Solid"
@@ -131,12 +151,20 @@
                             CornerRadius="6">
                         <StackPanel>
                             <Button Style="{StaticResource MenuButtonStyle}" 
-                                    Content="{DynamicResource Settings}" 
-                                    cal:Message.Attach="[Event Click]=[Action NavToSettings]" />
+                                    cal:Message.Attach="[Event Click]=[Action NavToSettings]">
+                                <!-- Content="{DynamicResource Settings}"  -->
+                                <Button.Content>
+                                    <Binding Source="{StaticResource Strings}" XPath="string[@key='Settings']" />
+                                </Button.Content>
+                            </Button>
                             <Separator />
                             <Button Style="{StaticResource MenuButtonStyle}" 
-                                    Content="{DynamicResource AppExit}" 
-                                    cal:Message.Attach="[Event Click]=[Action AppExit]" />
+                                    cal:Message.Attach="[Event Click]=[Action AppExit]">
+                                <!-- Content="{DynamicResource AppExit}"  -->
+                                <Button.Content>
+                                    <Binding Source="{StaticResource Strings}" XPath="string[@key='AppExit']" />
+                                </Button.Content>
+                            </Button>
                         </StackPanel>
                     </Border>
                 </Grid>

@@ -8,7 +8,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- 语言包 -->
                 <ResourceDictionary Source="pack://application:,,,/Resources/Strings/zh-Hans-CN.xaml" />
-
+                <ResourceDictionary>
+                    <XmlDataProvider x:Key="Strings" 
+                                     XPath="language/strings"
+                                     IsAsynchronous="False" />
+                </ResourceDictionary>
                 <ResourceDictionary>
                     <app:AppBootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>

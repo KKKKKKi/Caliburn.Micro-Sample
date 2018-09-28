@@ -3,7 +3,7 @@
     using Caliburn.Micro;
     using System.Windows.Media;
 
-    public class ConductorViewModel : Conductor<TabViewModel>.Collection.OneActive
+    public class ConductorViewModel : Conductor<TabViewModel>.Collection.OneActive, Services.ICleanup
     {
         private int _count = 0;
 
@@ -32,6 +32,11 @@
         public void WinEscape()
         {
             (GetView() as Views.ConductorView).Close();
+        }
+
+        public void Cleanup()
+        {
+            // TODO: Cleanup
         }
     }
 }

@@ -6,8 +6,8 @@
       xmlns:cal="http://www.caliburnproject.org"
       xmlns:v="clr-namespace:CaliburnMicroSample.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="DragDropView">
+      d:DesignWidth="800"
+      d:DesignHeight="450">
 
     <Grid x:Name="RootGrid" 
           Margin="10" AllowDrop="True"
@@ -27,9 +27,13 @@
                        Text="&#xF15B;"
                        Foreground="DodgerBlue"
                        HorizontalAlignment="Center"/>
-            <TextBlock Text="{DynamicResource DropFileHere}" 
-                       FontSize="24"
-                       Foreground="DodgerBlue" />
+            <TextBlock FontSize="24"
+                       Foreground="DodgerBlue">
+                <!-- Text="{DynamicResource DropFileHere}" -->
+                <TextBlock.Text>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='DropFileHere']" />
+                </TextBlock.Text>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Page>
