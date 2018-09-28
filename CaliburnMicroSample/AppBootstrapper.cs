@@ -40,7 +40,7 @@
 
             // Key Bindings Convertion
             /*********************************************************************************************/
-            var defaultCreateTrigger = Parser.CreateTrigger;
+            Func<DependencyObject, string, System.Windows.Interactivity.TriggerBase> defaultCreateTrigger = Parser.CreateTrigger;
 
             Parser.CreateTrigger = (target, triggerText) =>
             {
@@ -58,7 +58,7 @@
                         return new KeyTrigger { Key = key };
 
                     case "Gesture":
-                        MultiKeyGesture mkg = (MultiKeyGesture)(new MultiKeyGestureConverter()).ConvertFrom(splits[1]);
+                        MultiKeyGesture mkg = (MultiKeyGesture)new MultiKeyGestureConverter().ConvertFrom(splits[1]);
                         return new KeyTrigger { Modifiers = mkg.KeySequences[0].Modifiers, Key = mkg.KeySequences[0].Keys[0] };
 
                     default: break;
@@ -110,7 +110,6 @@
         #region configs
         /* configs */
         /*********************************************************************************************/
-
         private void LoadConfigs()
         {
             string configfile = @".\Configs\Configs.json";

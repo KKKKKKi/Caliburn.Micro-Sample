@@ -77,7 +77,7 @@
                                     <Setter TargetName="LayoutRoot" Property="Background" Value="LightSkyBlue" />
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="LayoutRoot" Property="Background" Value="Orange" />
+                                    <Setter TargetName="LayoutRoot" Property="Background" Value="SkyBlue" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -107,7 +107,7 @@
                     Content="&#xF07C;" 
                     DockPanel.Dock="Left"
                     cal:Message.Attach="[Event Click]=[Action OpenFile]">
-                <!-- ToolTip="{DynamicResource OpenFile}"  -->
+                <!-- ToolTip="{DynamicResource OpenFile}" -->
                 <Button.ToolTip>
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='OpenFile']" />
                 </Button.ToolTip>
@@ -146,9 +146,17 @@
                    PopupAnimation="Fade">
                 <Grid>
                     <Border Background="White" 
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            CornerRadius="6">
+                            BorderThickness="2"
+                            Padding="2">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1" Opacity="1.0">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="DeepSkyBlue" />
+                                    <GradientStop Offset="0.5" Color="MediumVioletRed" />
+                                    <GradientStop Offset="1" Color="Orange" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
                         <StackPanel>
                             <Button Style="{StaticResource MenuButtonStyle}" 
                                     cal:Message.Attach="[Event Click]=[Action NavToSettings]">
@@ -169,6 +177,7 @@
                     </Border>
                 </Grid>
             </Popup>
+            
             <Grid />
         </DockPanel>
         <Frame Grid.Row="1" 

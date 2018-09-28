@@ -20,7 +20,7 @@
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Margin="2">
-                <TextBlock>
+                <TextBlock VerticalAlignment="Center">
                     <!-- Text="{DynamicResource LangSetting}" -->
                     <TextBlock.Text>
                         <Binding Source="{StaticResource Strings}" XPath="string[@key='LangSetting']" />

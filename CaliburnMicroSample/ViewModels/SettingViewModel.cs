@@ -11,8 +11,14 @@
     {
         private IEventAggregator _eventAggregator => IoC.Get<IEventAggregator>(nameof(EventAggregator));
 
+        /// <summary>
+        /// Languages List
+        /// </summary>
         public BindableCollection<string> Languages { get; private set; }
 
+        /// <summary>
+        /// Languages Resource Dict
+        /// </summary>
         private Dictionary<string, string> _langDic;
 
         public SettingViewModel()
@@ -20,6 +26,7 @@
             if (View.InDesignMode)
             {
                 Languages = new BindableCollection<string>() { "语言" };
+                _selectedLanguage = Languages[0];
             }
             else
             {
@@ -37,7 +44,6 @@
                     if (!lang.Name.LocalName.Equals("language"))
                     { continue; }
                     XAttribute name = lang.Attribute(XName.Get("name"));
-
                     if (name == null)
                     { continue; }
 
@@ -50,6 +56,10 @@
 
         private string _selectedLanguage;
 
+        /// <summary>
+        /// Current Language
+        /// <see cref="_selectedLanguage" />
+        /// </summary>
         public string SelectedLanguage
         {
             get => _selectedLanguage ?? (_selectedLanguage = App.configs.Language);
