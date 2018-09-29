@@ -13,7 +13,29 @@
       cal:Bind.AtDesignTime="True">
 
     <Grid>
-        <TextBlock x:Name="FilePath" 
-                   FontSize="24" />
+        <Border HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                BorderThickness="1"
+                Panel.ZIndex="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0, 0.5" EndPoint="1, 0.5" Opacity="0.7">
+                    <GradientStopCollection>
+                        <GradientStop Offset="0" Color="Blue" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock x:Name="FilePath" FontSize="24" 
+                       Foreground="White" 
+                       Margin="12 2" />
+        </Border>
+        <Border>
+            <Border.Background>
+                <ImageBrush Opacity="0.8" ImageSource="pack://application:,,,/Resources/images/jeanne_d'arc jea.jpg" />
+            </Border.Background>
+            <Border.Effect>
+                <BlurEffect Radius="20" RenderingBias="Performance" />
+            </Border.Effect>
+        </Border>
     </Grid>
 </Page>

@@ -105,7 +105,7 @@
         protected override void OnUnhandledException(object s, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;
-            MessageBox.Show(e.Exception.Message, "Error", MessageBoxButton.OK);
+            MessageBox.Show(e.Exception.Message, "(^_−)≡★", MessageBoxButton.OK);
         }
 
         #region configs

@@ -234,5 +234,8 @@
   <ItemGroup>
     <Resource Include="Resources\Strings\en-US.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\images\jeanne_d%27arc jea.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
