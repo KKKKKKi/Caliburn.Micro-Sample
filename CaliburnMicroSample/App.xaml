@@ -6,16 +6,17 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- 语言包 -->
-                <ResourceDictionary Source="pack://application:,,,/Resources/Strings/zh-Hans-CN.xaml" />
+                <!-- 语言资源 不再使用xaml -->
+                <!-- <ResourceDictionary Source="pack://application:,,,/Resources/Strings/zh-Hans-CN.xaml" /> -->
+                <ResourceDictionary>
+                    <app:AppBootstrapper x:Key="Bootstrapper" />
+                </ResourceDictionary>
+                <!-- 语言资源 -->
                 <ResourceDictionary>
                     <XmlDataProvider x:Key="Strings" 
                                      Source="pack://application:,,,/Resources/Strings/zh-Hans-CN.xml"
                                      XPath="language/strings"
                                      IsAsynchronous="False" />
-                </ResourceDictionary>
-                <ResourceDictionary>
-                    <app:AppBootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

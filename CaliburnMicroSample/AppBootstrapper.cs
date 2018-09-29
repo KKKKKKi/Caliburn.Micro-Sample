@@ -12,6 +12,7 @@
     using Models;
     using Services;
     using ViewModels;
+    using System.Windows.Resources;
 
     public class AppBootstrapper : BootstrapperBase, ICleanup
     {
@@ -71,7 +72,7 @@
 
         protected override void OnStartup(object s, StartupEventArgs e)
         {
-            NotifyLoadLanguage();
+            NotifyLoadLanguage();  // Notify Settings Load Language
             DisplayRootViewFor<ShellViewModel>();
         }
 
@@ -112,18 +113,18 @@
         /*********************************************************************************************/
         private void LoadConfigs()
         {
-            string configfile = @".\Configs\Configs.json";
-            // 如果目录不存在则创建
-            if (!Directory.Exists(@".\Configs"))
+            string configfile = Environment.CurrentDirectory + "\\Configs\\Configs.json";
+            if (!File.Exists(configfile))
             {
-                Directory.CreateDirectory(@".\Configs");
+                App.configs = GetDefaultConfigs();
+                return;
             }
-            // 读方式打开配置文件，不存在则创建
-            FileStream fs = new FileStream(configfile, FileMode.OpenOrCreate, FileAccess.Read);
+            // 读方式打开配置文件
+            FileStream fs = new FileStream(configfile, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(fs);
             App.configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
             reader.Close();
-            // 配置文件反序列化失败，默认设置
+            // 加载配置失败，使用默认配置
             if (App.configs == null)
             {
                 App.configs = GetDefaultConfigs();
@@ -132,16 +133,17 @@
 
         private void SaveConfigs()
         {
-            string configfile = @".\Configs\Configs.json";
+            string configfile = Environment.CurrentDirectory + "\\Configs";
             // 如果目录不存在则创建
-            if (!Directory.Exists(@".\Configs"))
+            if (!Directory.Exists(configfile))
             {
-                Directory.CreateDirectory(@".\Configs");
+                Directory.CreateDirectory(configfile);
             }
-            // 写入配置文件
+            configfile += "\\Configs.json";
+            // 写入配置文件，新建文件覆盖
             FileStream fs = new FileStream(configfile, FileMode.Create, FileAccess.Write);
             StreamWriter writer = new StreamWriter(fs);
-            string json = JsonConvert.SerializeObject(App.configs);
+            string json = JsonConvert.SerializeObject(App.configs, Formatting.Indented);
             writer.Write(json);
             writer.Flush();
             writer.Close();
@@ -153,10 +155,14 @@
         /// <returns>configs</returns>
         private Configs GetDefaultConfigs()
         {
-            return new Configs()
-            {
-                Language = "简体中文",
-            };
+            Configs configs;
+            string configfile = "pack://application:,,,/Configs/Configs.json";
+            StreamResourceInfo stream = Application.GetResourceStream(new Uri(configfile));
+            StreamReader reader = new StreamReader(stream.Stream);
+            configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
+            reader.Close();
+
+            return configs;
         }
 
         // 给设置发送消息
