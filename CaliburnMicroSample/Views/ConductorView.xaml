@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:design="clr-namespace:CaliburnMicroSample.Design"
         xmlns:v="clr-namespace:CaliburnMicroSample.Views"
         mc:Ignorable="d"
         Width="640" Height="360"
+        d:DataContext="{d:DesignInstance Type={x:Type design:ConductorViewModel}, IsDesignTimeCreatable=True}"
+        cal:Bind.AtDesignTime="True"
         cal:Message.Attach="[Key Escape]=[Action WinEscape]">
     <!-- Title="{DynamicResource ConductorTitle}" -->
     <Window.Title>

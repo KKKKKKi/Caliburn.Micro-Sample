@@ -4,10 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:cal="http://www.caliburnproject.org"
+      xmlns:design="clr-namespace:CaliburnMicroSample.Design"
       xmlns:v="clr-namespace:CaliburnMicroSample.Views"
       mc:Ignorable="d" 
       d:DesignWidth="800"
-      d:DesignHeight="450">
+      d:DesignHeight="450"
+      d:DataContext="{d:DesignInstance Type={x:Type design:MainViewModel}, IsDesignTimeCreatable=True}"
+      cal:Bind.AtDesignTime="True">
 
     <Grid>
         <TextBlock x:Name="FilePath" 

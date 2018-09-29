@@ -15,6 +15,9 @@
         /// </summary>
         public BindableCollection<string> Languages { get; private set; }
 
+        /// <summary>
+        /// Selected Language
+        /// </summary>
         public string SelectedLanguage { get; private set; }
     }
 }

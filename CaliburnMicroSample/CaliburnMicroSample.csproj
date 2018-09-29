@@ -93,6 +93,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Design\ConductorViewModel.cs" />
+    <Compile Include="Design\MainViewModel.cs" />
     <Compile Include="Design\SettingViewModel.cs" />
     <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Input\KeySequence.cs" />

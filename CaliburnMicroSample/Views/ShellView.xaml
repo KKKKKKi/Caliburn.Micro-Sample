@@ -136,6 +136,17 @@
                     Content="&#xF0C9;"
                     DockPanel.Dock="Right" 
                     Click="MenuButton_Click" />
+            <!-- XAML 中嵌入代码
+                 这里仅作测试，实际上不建议这样做
+            -->
+            <x:Code>
+                <![CDATA[
+                void MenuButton_Click(object s, RoutedEventArgs e)
+                {
+                    MenuPopup.IsOpen = !MenuPopup.IsOpen;
+                }
+                ]]>
+            </x:Code>
             <Popup x:Name="MenuPopup" 
                    PlacementTarget="{Binding ElementName=MenuButton}"
                    Placement="Mouse"

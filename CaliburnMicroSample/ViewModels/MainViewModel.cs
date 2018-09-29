@@ -1,7 +1,9 @@
 ﻿namespace CaliburnMicroSample.ViewModels
 {
     using Caliburn.Micro;
-    public class MainViewModel : Screen, Services.ICleanup
+    using Services;
+
+    public class MainViewModel : Screen, ICleanup
     {
         private SimpleContainer _container => IoC.Get<SimpleContainer>();
         private INavigationService _navigationService => IoC.Get<INavigationService>(key: "ContentFrame");
@@ -15,7 +17,7 @@
             {
                 if (Set(ref _filePath, value))
                 {
-                    //
+                    // TODO: File Operate
                 }
             }
         }

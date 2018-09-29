@@ -23,34 +23,43 @@
 
         public SettingViewModel()
         {
-            if (Execute.InDesignMode)
+            Languages = new BindableCollection<string>();
+            _langDic = new Dictionary<string, string>();
+
+            string langfolder = System.Environment.CurrentDirectory + "\\Strings";
+            DirectoryInfo dir = new DirectoryInfo(langfolder);
+            FileInfo[] files = dir.GetFiles("*.xml");  // 获取语言资源文件夹下的所有xml
+
+            for (int i = 0; i < files.Length; i++)
             {
-                Languages = new BindableCollection<string>() { "语言" };
-                _selectedLanguage = Languages[0];
+                string path = files[i].FullName;
+                XElement lang = XElement.Load(path);
+                if (!lang.Name.LocalName.Equals("language"))
+                { continue; }
+                XAttribute name = lang.Attribute(XName.Get("name"));
+                if (name == null)
+                { continue; }
+
+                // 加入语言列表
+                Languages.Add(name.Value);
+                _langDic.Add(name.Value, path);
             }
-            else
+
+            // 程序内嵌入简体中文和英文
+            // 如果语言资源文件夹下有相应资源
+            // 就使用文件夹下资源而不是程序内的
+            string zh = "简体中文";
+            string en = "English";
+
+            if (!Languages.Contains(zh))
             {
-                Languages = new BindableCollection<string>();
-                _langDic = new Dictionary<string, string>();
-
-                string langfolder = System.Environment.CurrentDirectory + "\\Strings";
-                DirectoryInfo dir = new DirectoryInfo(langfolder);
-                FileInfo[] files = dir.GetFiles("*.xml");  // 获取语言资源文件夹下的所有xml
-
-                for (int i = 0; i < files.Length; i++)
-                {
-                    string path = files[i].FullName;
-                    XElement lang = XElement.Load(path);
-                    if (!lang.Name.LocalName.Equals("language"))
-                    { continue; }
-                    XAttribute name = lang.Attribute(XName.Get("name"));
-                    if (name == null)
-                    { continue; }
-
-                    // 加入语言列表
-                    Languages.Add(name.Value);
-                    _langDic.Add(name.Value, path);
-                }
+                Languages.Add(zh);
+                _langDic.Add(zh, "pack://application:,,,/Resources/Strings/zh-Hans-CN.xml");
+            }
+            if (!Languages.Contains(en))
+            {
+                Languages.Add(en);
+                _langDic.Add(en, "pack://application:,,,/Resources/Strings/en-US.xml");
             }
         }
 
@@ -62,7 +71,7 @@
         /// </summary>
         public string SelectedLanguage
         {
-            get => _selectedLanguage ?? (_selectedLanguage = App.configs.Language);
+            get => _selectedLanguage ?? (_selectedLanguage = "简体中文");
             set
             {
                 if (Set(ref _selectedLanguage, value))
@@ -76,7 +85,7 @@
         private void SwitchLanguage(string key)
         {
             string path = _langDic[key];
-            // LanguageHelper.LoadXamlStringsResource($"pack://application:,,,/Resources/Strings/{name}.xaml");
+            // LanguageHelper.LoadXamlStringsResource($"pack://application:,,,/Resources/Strings/{name}.xaml");  // 加载xaml资源，已经不需要
             LanguageHelper.LoadXmlStringsResource(path);  // 加载xml资源文件
         }
 
@@ -93,27 +102,17 @@
         {
             if (message.Sender is AppBootstrapper)
             {
-                // 如果没有语言资源
-                // 就从程序内加载资源文件
-                if (_langDic.Count == 0 || Languages.Count == 0)
-                {
-                    Languages = new BindableCollection<string>() { "简体中文" };
-                    // _langDic = new Dictionary<string, string>() { { "简体中文", "zh-Hans-CN" } };
-                    _selectedLanguage = Languages[0];
-                    App.configs.Language = _selectedLanguage;
-                    // LanguageHelper.LoadXamlStringsResource("pack://application:,,,/Resources/Strings/zh-Hans-CN.xaml");
-                    LanguageHelper.LoadXmlStringsResource("pack://application:,,,/Resources/Strings/zh-Hans-CN.xml");
-                    return;
-                }
-
                 if (_langDic.ContainsKey(message.Content))
                 {
                     SelectedLanguage = message.Content;
                 }
                 else
                 {
-                    // 如果没有相应的语言资源，那么选用已有资源文件的第一个
-                    SelectedLanguage = Languages[0];
+                    // 如果没有相应的语言资源，那么默认使用 简体中文
+                    // 可以不作修改，因为默认就是用的简体中文资源
+                    // SelectedLanguage = "简体中文";
+                    // 只修改系统配置
+                    App.configs.Language = SelectedLanguage;
                 }
             }
         }
