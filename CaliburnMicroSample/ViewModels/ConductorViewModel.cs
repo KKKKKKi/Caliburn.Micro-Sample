@@ -14,6 +14,7 @@
 
         protected override void OnInitialize()
         {
+            (GetView() as Views.ConductorView).Owner = System.Windows.Application.Current.MainWindow;
             AddTab();
         }
 

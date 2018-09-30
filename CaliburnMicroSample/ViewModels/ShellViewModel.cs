@@ -47,7 +47,7 @@
                 (b, p) => { });
         }
 
-        public void NewWindow()
+        public void ConductorWindow()
         {
             _windowManager.ShowWindow(IoC.Get<ConductorViewModel>(nameof(ConductorViewModel)));
         }

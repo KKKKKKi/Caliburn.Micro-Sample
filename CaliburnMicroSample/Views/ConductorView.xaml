@@ -8,6 +8,7 @@
         xmlns:v="clr-namespace:CaliburnMicroSample.Views"
         mc:Ignorable="d"
         Width="640" Height="360"
+        WindowStartupLocation="CenterOwner"
         d:DataContext="{d:DesignInstance Type={x:Type design:ConductorViewModel}, IsDesignTimeCreatable=True}"
         cal:Bind.AtDesignTime="True"
         cal:Message.Attach="[Key Escape]=[Action WinEscape]">

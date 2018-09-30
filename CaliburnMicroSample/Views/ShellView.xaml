@@ -10,7 +10,8 @@
         Height="540" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
-        cal:Message.Attach="[Key Enter] = [Action NewWindow];[Gesture Ctrl+Alt+X] = [Action AppExit];
+        cal:Message.Attach="[Key Enter] = [Action ConductorWindow];
+        [Gesture Ctrl+Alt+X] = [Action AppExit];
         [Event SizeChanged] = [Action ShellSizeChanged($source, $eventArgs)];
         [Event LocationChanged] = [Action ShellSizeChanged($source, $eventArgs)]">
     <Window.Title>
@@ -129,13 +130,13 @@
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='SaveFile']" />
                 </Button.ToolTip>
             </Button>
-            <Button x:Name="NewWindow" 
+            <Button x:Name="ConductorWindow" 
                     Style="{StaticResource IconButtonStyle}" 
                     Content="&#xF2D2;"
                     DockPanel.Dock="Left">
                 <!-- ToolTip="{DynamicResource NewWindow}" -->
                 <Button.ToolTip>
-                    <Binding Source="{StaticResource Strings}" XPath="string[@key='NewWindow']" />
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='ConductorWindow']" />
                 </Button.ToolTip>
             </Button>
             <Button x:Name="SampleWindow"
