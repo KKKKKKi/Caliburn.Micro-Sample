@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using System.Windows;
+    using Helpers;
     // using GalaSoft.MvvmLight.Views;
 
     /// <summary>
@@ -32,13 +33,11 @@
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(string message, string title, string buttonText, Action afterHideCallback)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OK);
 
             afterHideCallback?.Invoke();
-            tcs.SetResult(true);
 
-            return tcs.Task;
+            return TaskHelper.FromResult(true);
         }
 
         /// <summary>
@@ -56,13 +55,10 @@
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(Exception error, string title, string buttonText, Action afterHideCallback)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(error.Message, title ?? string.Empty, MessageBoxButton.OK);
 
             afterHideCallback?.Invoke();
-            tcs.SetResult(true);
-
-            return tcs.Task;
+            return TaskHelper.FromResult(true);
         }
 
         /// <summary>
@@ -77,10 +73,8 @@
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             ShowMessage(message, title ?? string.Empty, null, null);
-            tcs.SetResult(true);
-            return tcs.Task;
+            return TaskHelper.FromResult(true);
         }
 
         /// <summary>
@@ -99,13 +93,11 @@
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title, string buttonText, Action afterHideCallback)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OK);
 
             afterHideCallback?.Invoke();
 
-            tcs.SetResult(true);
-            return tcs.Task;
+            return TaskHelper.FromResult(true);
         }
 
         /// <summary>
@@ -129,13 +121,11 @@
         /// for cross-platform compatibility purposes.</remarks>
         public Task<bool> ShowMessage(string message, string title, string buttonConfirmText, string buttonCancelText, Action<bool> afterHideCallback)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             MessageBoxResult result = MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OKCancel);
 
             afterHideCallback?.Invoke(result == MessageBoxResult.OK || result == MessageBoxResult.Yes);
 
-            tcs.SetResult(result == MessageBoxResult.OK || result == MessageBoxResult.Yes);
-            return tcs.Task;
+            return TaskHelper.FromResult(result == MessageBoxResult.OK || result == MessageBoxResult.Yes);
         }
 
         /// <summary>
@@ -150,10 +140,8 @@
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessageBox(string message, string title)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OK);
-            tcs.SetResult(true);
-            return tcs.Task;
+            return TaskHelper.FromResult(true);
         }
 
 
@@ -169,8 +157,6 @@
         /// true or false depending on the dialog result.</returns>
         public Task<bool> ShowFileDialog(bool isOpenFile, string filter, Window owner, Action<bool, object> callback)
         {
-            var tcs = new TaskCompletionSource<bool>();
-
             if (isOpenFile)
             {
                 OpenFileDialog dlg = new OpenFileDialog()
@@ -181,7 +167,7 @@
 
                 callback?.Invoke(result == true, dlg.FileName);
 
-                tcs.SetResult(result == true);
+                return TaskHelper.FromResult(result == true);
             }
             else
             {
@@ -193,10 +179,8 @@
 
                 callback?.Invoke(result == true, dlg.FileName);
 
-                tcs.SetResult(result == true);
+                return TaskHelper.FromResult(result == true);
             }
-
-            return tcs.Task;
         }
     }
 }

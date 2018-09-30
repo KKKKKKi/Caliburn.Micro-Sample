@@ -62,6 +62,7 @@
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -107,9 +108,11 @@
     </Compile>
     <Compile Include="Design\ConductorViewModel.cs" />
     <Compile Include="Design\MainViewModel.cs" />
+    <Compile Include="Design\SampleViewModel.cs" />
     <Compile Include="Design\SettingViewModel.cs" />
     <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Helpers\SystemInfoHelper.cs" />
+    <Compile Include="Helpers\TaskHelper.cs" />
     <Compile Include="Input\KeySequence.cs" />
     <Compile Include="Input\KeyTrigger.cs" />
     <Compile Include="Input\MultiKeyGesture.cs" />
@@ -120,12 +123,16 @@
     <Compile Include="Services\ICleanup.cs" />
     <Compile Include="Services\IDialogServiceEx.cs" />
     <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="ViewModels\SampleViewModel.cs" />
     <Compile Include="ViewModels\ConductorViewModel.cs" />
     <Compile Include="ViewModels\DragDropViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TabViewModel.cs" />
+    <Compile Include="Views\SampleView.xaml.cs">
+      <DependentUpon>SampleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConductorView.xaml.cs">
       <DependentUpon>ConductorView.xaml</DependentUpon>
     </Compile>
@@ -194,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Strings\zh-Hans-CN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SampleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

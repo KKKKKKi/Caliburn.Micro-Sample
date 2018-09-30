@@ -7,10 +7,15 @@
     <sys:String x:Key="OpenFile">Open File</sys:String>
     <sys:String x:Key="SaveFile">Save File</sys:String>
     <sys:String x:Key="NewWindow">Show a new window(Enter)</sys:String>
+    <sys:String x:Key="SampleWindow">Sample Window</sys:String>
     <sys:String x:Key="Settings">Settings</sys:String>
     <sys:String x:Key="AppExit">Exit(Ctrl+Alt+X)</sys:String>
     <sys:String x:Key="LangSetting">Language: </sys:String>
     <sys:String x:Key="DropFileHere">Drag a file and drop here</sys:String>
     <sys:String x:Key="SendMessage">Send Message</sys:String>
     <sys:String x:Key="ConductorTitle">Conductor Window(ESC to close)</sys:String>
+    <sys:String x:Key="NameText">Name: </sys:String>
+    <sys:String x:Key="SayHelloBtnContent">Say Hello</sys:String>
+    <sys:String x:Key="ParamsBtnContent">Command With Param</sys:String>
+    <sys:String x:Key="ActionTargetBtnContent">Action.Target</sys:String>
 </ResourceDictionary>

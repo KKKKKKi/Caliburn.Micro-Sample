@@ -7,10 +7,15 @@
     <sys:String x:Key="OpenFile">打开文件</sys:String>
     <sys:String x:Key="SaveFile">保存文件</sys:String>
     <sys:String x:Key="NewWindow">打开新窗口(Enter)</sys:String>
+    <sys:String x:Key="SampleWindow">Sample 窗口</sys:String>
     <sys:String x:Key="Settings">设置</sys:String>
     <sys:String x:Key="AppExit">退出(Ctrl+Alt+X)</sys:String>
     <sys:String x:Key="LangSetting">语言：</sys:String>
     <sys:String x:Key="DropFileHere">拖放文件到这里</sys:String>
     <sys:String x:Key="SendMessage">发送消息</sys:String>
     <sys:String x:Key="ConductorTitle">Conductor 窗口(ESC关闭)</sys:String>
+    <sys:String x:Key="NameText">名字：</sys:String>
+    <sys:String x:Key="SayHelloBtnContent">Say Hello</sys:String>
+    <sys:String x:Key="ParamsBtnContent">Command With Param</sys:String>
+    <sys:String x:Key="ActionTargetBtnContent">Action.Target</sys:String>
 </ResourceDictionary>

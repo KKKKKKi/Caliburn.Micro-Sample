@@ -19,6 +19,11 @@
             _eventAggregator.Subscribe(this);
         }
 
+        public void ShellSizeChanged(Window s, SizeChangedEventArgs e)
+        {
+            _eventAggregator.PublishOnUIThread(new SimpleMessage(s, "", ""));
+        }
+
         public void GoBack()
         {
             if (_navigationService.CanGoBack)
@@ -45,6 +50,12 @@
         public void NewWindow()
         {
             _windowManager.ShowWindow(IoC.Get<ConductorViewModel>(nameof(ConductorViewModel)));
+        }
+
+        public void SampleWindow()
+        {
+            // 函数名不能出现 "Action" 字样
+            _windowManager.ShowWindow(IoC.Get<SampleViewModel>(nameof(SampleViewModel)));
         }
 
         public void RegisterFrame(Frame frame)

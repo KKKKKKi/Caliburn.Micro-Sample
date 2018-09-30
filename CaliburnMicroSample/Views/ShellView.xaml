@@ -4,13 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cal="http://www.caliburnproject.org"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:v="clr-namespace:CaliburnMicroSample.Views"
         mc:Ignorable="d"
         Width="960"
         Height="540" 
         WindowStartupLocation="CenterScreen"
-        cal:Message.Attach="[Key Enter] = [Action NewWindow];[Gesture Ctrl+Alt+X] = [Action AppExit]">
+        ResizeMode="CanResizeWithGrip"
+        cal:Message.Attach="[Key Enter] = [Action NewWindow];[Gesture Ctrl+Alt+X] = [Action AppExit];
+        [Event SizeChanged] = [Action ShellSizeChanged($source, $eventArgs)];
+        [Event LocationChanged] = [Action ShellSizeChanged($source, $eventArgs)]">
     <Window.Title>
         <Binding Source="{StaticResource Strings}" XPath="string[@key='AppName']" />
     </Window.Title>
@@ -40,6 +42,9 @@
                                                   Content="{TemplateBinding Content}" />
                             </Border>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="RootBorder" Property="Background" Value="Gray" />
+                                </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="RootBorder" Property="Background" Value="LightSkyBlue" />
                                 </Trigger>
@@ -73,6 +78,9 @@
                                                   Content="{TemplateBinding Content}" />
                             </Border>
                             <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="LayoutRoot" Property="Background" Value="Gray" />
+                                </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter TargetName="LayoutRoot" Property="Background" Value="LightSkyBlue" />
                                 </Trigger>
@@ -128,6 +136,14 @@
                 <!-- ToolTip="{DynamicResource NewWindow}" -->
                 <Button.ToolTip>
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='NewWindow']" />
+                </Button.ToolTip>
+            </Button>
+            <Button x:Name="SampleWindow"
+                    Style="{StaticResource IconButtonStyle}"
+                    Content="&#xF2DC;"
+                    DockPanel.Dock="Left">
+                <Button.ToolTip>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='SampleWindow']" />
                 </Button.ToolTip>
             </Button>
             <Button x:Name="MenuButton" 

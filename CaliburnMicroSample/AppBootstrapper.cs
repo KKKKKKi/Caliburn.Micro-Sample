@@ -37,7 +37,8 @@
                 .PerRequest<DragDropViewModel>(key: nameof(DragDropViewModel))
                 .Singleton<MainViewModel>(key: nameof(MainViewModel))
                 .Singleton<SettingViewModel>(key: nameof(SettingViewModel))
-                .PerRequest<ConductorViewModel>(key: nameof(ConductorViewModel));
+                .PerRequest<ConductorViewModel>(key: nameof(ConductorViewModel))
+                .Singleton<SampleViewModel>(key: nameof(SampleViewModel));
 
             // Key Bindings Convertion
             /*********************************************************************************************/
@@ -67,6 +68,8 @@
 
                 return defaultCreateTrigger(target, triggerText);
             };
+
+            MessageBinder.SpecialValues.Add("$sender", ctx => ctx.Source);
             /*********************************************************************************************/
         }
 
@@ -186,6 +189,7 @@
             IoC.Get<MainViewModel>(nameof(MainViewModel)).Cleanup();
             IoC.Get<SettingViewModel>(nameof(SettingViewModel)).Cleanup();
             IoC.Get<ConductorViewModel>(nameof(ConductorViewModel)).Cleanup();
+            IoC.Get<SampleViewModel>(nameof(SampleViewModel)).Cleanup();
         }
     }
 }

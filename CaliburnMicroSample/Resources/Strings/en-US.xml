@@ -6,11 +6,16 @@
     <string key="OpenFile">Open File</string>
     <string key="SaveFile">Save File</string>
     <string key="NewWindow">Show a new window(Enter)</string>
+    <string key="SampleWindow">Sample Window</string>
     <string key="Settings">Settings</string>
     <string key="AppExit">Exit(Ctrl+Alt+X)</string>
     <string key="LangSetting">Language: </string>
     <string key="DropFileHere">Drag a file and drop here</string>
     <string key="SendMessage">Send Message</string>
     <string key="ConductorTitle">Conductor Window(ESC to close)</string>
+    <string key="NameText">Name: </string>
+    <string key="SayHelloBtnContent">Say Hello</string>
+    <string key="ParamsBtnContent">Command With Param</string>
+    <string key="ActionTargetBtnContent">Action.Target</string>
   </strings>
 </language>
