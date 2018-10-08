@@ -31,7 +31,23 @@
         </Border>
         <Border>
             <Border.Background>
-                <ImageBrush Opacity="0.8" ImageSource="pack://application:,,,/Resources/images/jeanne_d'arc jea.jpg" />
+                <DrawingBrush Stretch="None">
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing Brush="Orange" >
+                            <GeometryDrawing.Geometry>
+                                <GeometryGroup>
+                                    <EllipseGeometry RadiusX="20" RadiusY="20" Center="50 100"  />
+                                    <EllipseGeometry RadiusX="30" RadiusY="30" Center="110 100"  />
+                                    <EllipseGeometry RadiusX="40" RadiusY="40" Center="190 100"  />
+                                    <EllipseGeometry RadiusX="50" RadiusY="50" Center="290 100"  />
+                                </GeometryGroup>
+                            </GeometryDrawing.Geometry>
+                            <GeometryDrawing.Pen>
+                                <Pen Thickness="2" Brush="Purple" />
+                            </GeometryDrawing.Pen>
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
             </Border.Background>
             <Border.Effect>
                 <BlurEffect Radius="20" RenderingBias="Performance" />

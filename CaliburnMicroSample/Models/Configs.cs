@@ -4,9 +4,10 @@
     using YamlDotNet.Serialization;
 
     /// <summary>
-    /// Configs Model
+    /// Configs
     /// 添加需要保存的配置属性
     /// 通过序列化和反序列化自动保存到配置文件
+    /// * 可以Binding到UI
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class Configs

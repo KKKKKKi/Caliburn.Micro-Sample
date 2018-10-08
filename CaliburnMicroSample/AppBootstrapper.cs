@@ -128,6 +128,7 @@
             FileStream fs = new FileStream(configfile, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(fs);
             // App.configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
+
             IDeserializer deserializer = new DeserializerBuilder().Build();
             try
             {
@@ -137,6 +138,7 @@
             {
                 App.configs = null;
             }
+
             reader.Close();
             // 加载配置失败，使用默认配置
             if (App.configs == null)
