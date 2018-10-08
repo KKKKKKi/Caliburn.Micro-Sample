@@ -2,17 +2,18 @@
 {
     using Caliburn.Micro;
     using Newtonsoft.Json;
+    using YamlDotNet.Serialization;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Windows;
     using System.Windows.Input;
+    using System.Windows.Resources;
     using System.Windows.Threading;
     using Input;  // Key Bindings Convertion
     using Models;
     using Services;
     using ViewModels;
-    using System.Windows.Resources;
 
     public class AppBootstrapper : BootstrapperBase, ICleanup
     {
@@ -116,7 +117,8 @@
         /*********************************************************************************************/
         private void LoadConfigs()
         {
-            string configfile = Environment.CurrentDirectory + "\\Configs\\Configs.json";
+            // string configfile = Environment.CurrentDirectory + "\\Configs\\Configs.json";
+            string configfile = Environment.CurrentDirectory + "\\Configs\\Configs.yml";
             if (!File.Exists(configfile))
             {
                 App.configs = GetDefaultConfigs();
@@ -125,7 +127,16 @@
             // 读方式打开配置文件
             FileStream fs = new FileStream(configfile, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(fs);
-            App.configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
+            // App.configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
+            IDeserializer deserializer = new DeserializerBuilder().Build();
+            try
+            {
+                App.configs = deserializer.Deserialize<Configs>(reader.ReadToEnd());
+            }
+            catch (Exception)
+            {
+                App.configs = null;
+            }
             reader.Close();
             // 加载配置失败，使用默认配置
             if (App.configs == null)
@@ -142,12 +153,18 @@
             {
                 Directory.CreateDirectory(configfile);
             }
-            configfile += "\\Configs.json";
+            // configfile += "\\Configs.json";
+            configfile += "\\Configs.yml";
             // 写入配置文件，新建文件覆盖
             FileStream fs = new FileStream(configfile, FileMode.Create, FileAccess.Write);
             StreamWriter writer = new StreamWriter(fs);
-            string json = JsonConvert.SerializeObject(App.configs, Formatting.Indented);
-            writer.Write(json);
+            // string json = JsonConvert.SerializeObject(App.configs, Formatting.Indented);
+            // writer.Write(json);
+
+            ISerializer serializer = new SerializerBuilder().Build();
+            string yaml = serializer.Serialize(App.configs);
+            writer.Write(yaml);
+
             writer.Flush();
             writer.Close();
         }
@@ -159,10 +176,15 @@
         private Configs GetDefaultConfigs()
         {
             Configs configs;
-            string configfile = "pack://application:,,,/Configs/Configs.json";
+            // string configfile = "pack://application:,,,/Configs/Configs.json";
+            string configfile = "pack://application:,,,/Configs/Configs.yml";
             StreamResourceInfo stream = Application.GetResourceStream(new Uri(configfile));
             StreamReader reader = new StreamReader(stream.Stream);
-            configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
+            // configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
+
+            IDeserializer deserializer = new DeserializerBuilder().Build();
+            configs = deserializer.Deserialize<Configs>(reader.ReadToEnd());
+
             reader.Close();
 
             return configs;

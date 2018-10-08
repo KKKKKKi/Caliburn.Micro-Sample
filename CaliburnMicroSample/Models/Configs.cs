@@ -1,6 +1,7 @@
 ﻿namespace CaliburnMicroSample.Models
 {
     using Newtonsoft.Json;
+    using YamlDotNet.Serialization;
 
     /// <summary>
     /// Configs Model
@@ -14,6 +15,7 @@
         /// 语言设置
         /// </summary>
         [JsonProperty(PropertyName = "Language")]
+        [YamlMember(Alias = "Language", ApplyNamingConventions = false)]
         public string Language { get; set; }
     }
 }
