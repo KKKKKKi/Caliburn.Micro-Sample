@@ -18,6 +18,8 @@
                                      XPath="language/strings"
                                      IsAsynchronous="False" />
                 </ResourceDictionary>
+                <!-- 控件库样式 -->
+                <ResourceDictionary Source="pack://application:,,,/KXControls;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

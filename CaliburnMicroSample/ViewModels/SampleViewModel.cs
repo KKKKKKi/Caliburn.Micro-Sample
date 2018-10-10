@@ -30,8 +30,8 @@
             view.Owner = Application.Current.MainWindow;
         }
 
-        public bool CanSayHello(string name) => !string.IsNullOrEmpty(name);
-        public async Task SayHelloAsync(string name) => await _dialogService.ShowMessageBox($"Hello {name}!", "Message");
+        public bool CanSayHello(string inputName) => !string.IsNullOrEmpty(inputName);
+        public async Task SayHelloAsync(string inputName) => await _dialogService.ShowMessageBox($"Hello {inputName}!", "Message");
 
         public async Task CommandWithParamAsync(Button s, object sender, RoutedEventArgs e, object dataContext, object view, object defaultThis)
         {

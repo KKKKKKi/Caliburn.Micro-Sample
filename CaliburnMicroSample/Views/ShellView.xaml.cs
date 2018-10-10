@@ -9,7 +9,7 @@
         {
             InitializeComponent();
         }
-        
+
         /* Moved to XAML
         private void MenuButton_Click(object s, System.Windows.RoutedEventArgs e)
         {

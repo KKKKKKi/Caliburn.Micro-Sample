@@ -1,22 +1,24 @@
-﻿<Window x:Class="CaliburnMicroSample.Views.ShellView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:cal="http://www.caliburnproject.org"
-        xmlns:v="clr-namespace:CaliburnMicroSample.Views"
-        mc:Ignorable="d"
-        Width="960"
-        Height="540" 
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip"
-        cal:Message.Attach="[Key Enter] = [Action ConductorWindow];
-        [Gesture Ctrl+Alt+X] = [Action AppExit];
-        [Event SizeChanged] = [Action ShellSizeChanged($source, $eventArgs)];
-        [Event LocationChanged] = [Action ShellSizeChanged($source, $eventArgs)]">
-    <Window.Title>
+﻿<kx:Window2D 
+    x:Class="CaliburnMicroSample.Views.ShellView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:kx="clr-namespace:KXControls;assembly=KXControls"
+    xmlns:v="clr-namespace:CaliburnMicroSample.Views"
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+    Icon="../favicon.ico"
+    Width="960" Height="540" 
+    cal:Message.Attach="[Key Enter] = [Action ConductorWindow];
+    [Gesture Ctrl+Alt+X] = [Action AppExit];
+    [Event SizeChanged] = [Action ShellSizeChanged($source, $eventArgs)];
+    [Event LocationChanged] = [Action ShellSizeChanged($source, $eventArgs)];">
+    
+    <kx:Window2D.Title>
         <Binding Source="{StaticResource Strings}" XPath="string[@key='AppName']" />
-    </Window.Title>
+    </kx:Window2D.Title>
 
     <Grid>
         <Grid.Resources>
@@ -154,7 +156,7 @@
                     DockPanel.Dock="Right" 
                     Click="MenuButton_Click" />
             <!-- XAML 中嵌入代码
-                 这里仅作测试，实际上不建议这样做
+                 这里仅作测试，实际上不提倡这样做
             -->
             <x:Code>
                 <![CDATA[
@@ -213,4 +215,4 @@
                cal:Message.Attach="RegisterFrame($source)" 
                DataContext="{x:Null}" />
     </Grid>
-</Window>
+</kx:Window2D>

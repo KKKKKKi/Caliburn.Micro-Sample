@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaliburnMicroSample", "CaliburnMicroSample\CaliburnMicroSample.csproj", "{E8B22809-A898-4B5F-8418-A738F172A19A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControlLib", "CustomControlLib\CustomControlLib.csproj", "{98B2A9EC-007F-41F1-B67D-190A53782CF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E8B22809-A898-4B5F-8418-A738F172A19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8B22809-A898-4B5F-8418-A738F172A19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8B22809-A898-4B5F-8418-A738F172A19A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B2A9EC-007F-41F1-B67D-190A53782CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B2A9EC-007F-41F1-B67D-190A53782CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B2A9EC-007F-41F1-B67D-190A53782CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B2A9EC-007F-41F1-B67D-190A53782CF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
