@@ -1,6 +1,7 @@
 ﻿namespace CaliburnMicroSample.ViewModels
 {
     using Caliburn.Micro;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Xml.Linq;
@@ -17,6 +18,11 @@
         public BindableCollection<string> Languages { get; private set; }
 
         /// <summary>
+        /// languages code dict
+        /// </summary>
+        private Dictionary<string, string> _langCodeDic;
+
+        /// <summary>
         /// Languages Resource Dict
         /// </summary>
         private Dictionary<string, string> _langDic;
@@ -24,9 +30,10 @@
         public SettingViewModel()
         {
             Languages = new BindableCollection<string>();
+            _langCodeDic = new Dictionary<string, string>();
             _langDic = new Dictionary<string, string>();
 
-            string langfolder = System.Environment.CurrentDirectory + "\\Strings";
+            string langfolder = Environment.CurrentDirectory + "\\Strings";
             DirectoryInfo dir = new DirectoryInfo(langfolder);
             FileInfo[] files = dir.GetFiles("*.xml");  // 获取语言资源文件夹下的所有xml
 
@@ -37,11 +44,13 @@
                 if (!lang.Name.LocalName.Equals("language"))
                 { continue; }
                 XAttribute name = lang.Attribute(XName.Get("name"));
-                if (name == null)
+                XAttribute tag = lang.Attribute(XName.Get("tag"));
+                if (name == null || tag == null)
                 { continue; }
 
                 // 加入语言列表
                 Languages.Add(name.Value);
+                _langCodeDic.Add(tag.Value, name.Value);
                 _langDic.Add(name.Value, path);
             }
 
@@ -54,11 +63,13 @@
             if (!Languages.Contains(zh))
             {
                 Languages.Add(zh);
-                _langDic.Add(zh, "pack://application:,,,/Resources/Strings/zh-Hans-CN.xml");
+                _langCodeDic.Add("zh-CN", zh);
+                _langDic.Add(zh, "pack://application:,,,/Resources/Strings/zh-CN.xml");
             }
             if (!Languages.Contains(en))
             {
                 Languages.Add(en);
+                _langCodeDic.Add("en-US", en);
                 _langDic.Add(en, "pack://application:,,,/Resources/Strings/en-US.xml");
             }
         }
@@ -71,13 +82,12 @@
         /// </summary>
         public string SelectedLanguage
         {
-            get => _selectedLanguage ?? (_selectedLanguage = "简体中文");
+            get => _selectedLanguage ?? (_selectedLanguage = "English");
             set
             {
                 if (Set(ref _selectedLanguage, value))
                 {
                     SwitchLanguage(value);  // 切换语言资源
-                    App.configs.Language = value;  // 更改应用配置
                 }
             }
         }
@@ -102,19 +112,29 @@
         {
             if (message.Sender is AppBootstrapper)
             {
-                if (_langDic.ContainsKey(message.Content))
+                if (_langCodeDic.ContainsKey(message.Content))
                 {
-                    SelectedLanguage = message.Content;
+                    SelectedLanguage = _langCodeDic[message.Content];
                 }
                 else
                 {
-                    // 如果没有相应的语言资源，那么默认使用 简体中文
-                    // 可以不作修改，因为默认就是用的简体中文资源
-                    // SelectedLanguage = "简体中文";
-                    // 只修改系统配置
-                    App.configs.Language = SelectedLanguage;
+                    // 如果没有相应的语言资源，那么默认使用 英文
+                    SelectedLanguage = "English";
                 }
             }
+        }
+
+        private string GetLanguageCode(string tvalue)
+        {
+            foreach (var item in _langCodeDic)
+            {
+                if (item.Value.Equals(tvalue))
+                {
+                    return item.Key;
+                }
+            }
+
+            return "";
         }
 
         /// <summary>
@@ -123,6 +143,8 @@
         public void Cleanup()
         {
             _eventAggregator.Unsubscribe(this);  // 取消事件订阅
+            // 保存设置
+            App.configs.Language = GetLanguageCode(_selectedLanguage);
         }
     }
 }

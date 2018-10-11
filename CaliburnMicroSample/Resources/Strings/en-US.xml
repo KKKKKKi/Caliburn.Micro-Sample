@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<language name="English">
+<language name="English" tag="en-US">
   <strings>
     <string key="AppName">Caliburn.Micro Sample WPF</string>
     <string key="GoBack">Go Back</string>

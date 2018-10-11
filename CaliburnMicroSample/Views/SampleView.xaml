@@ -11,6 +11,7 @@
     mc:Ignorable="d"
     Width="300" Height="540"
     ResizeMode="NoResize"
+    Style="{StaticResource TransparentWindow}"
     d:DataContext="{d:DesignInstance Type={x:Type design:SampleViewModel}, IsDesignTimeCreatable=True}"
     cal:Bind.AtDesignTime="True">
     <ctrl:Window2D.Title>

@@ -1,7 +1,7 @@
 ﻿namespace CaliburnMicroSample
 {
     using Caliburn.Micro;
-    using Newtonsoft.Json;
+    // using Newtonsoft.Json;
     using YamlDotNet.Serialization;
     using System;
     using System.Collections.Generic;
@@ -82,8 +82,8 @@
 
         protected override void OnExit(object s, EventArgs e)
         {
-            SaveConfigs();
             Cleanup();
+            SaveConfigs();
         }
 
         protected override object GetInstance(Type service, string key)
@@ -128,7 +128,7 @@
             FileStream fs = new FileStream(configfile, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(fs);
             // App.configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
-
+            
             IDeserializer deserializer = new DeserializerBuilder().Build();
             try
             {
@@ -144,6 +144,9 @@
             if (App.configs == null)
             {
                 App.configs = GetDefaultConfigs();
+                // 获取系统语言
+                string info = System.Globalization.CultureInfo.CurrentCulture.Name;
+                App.configs.Language = info;
             }
         }
 

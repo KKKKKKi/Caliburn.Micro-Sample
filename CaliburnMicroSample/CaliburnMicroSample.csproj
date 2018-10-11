@@ -105,7 +105,6 @@
     <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YamlDotNet.5.2.0\lib\net45\YamlDotNet.dll</HintPath>
     </Reference>
-
     <ProjectReference Include="..\CustomControlLib\CustomControlLib.csproj">
       <Project>{98b2a9ec-007f-41f1-b67d-190a53782cf1}</Project>
       <Name>CustomControlLib</Name>
@@ -116,11 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Strings\zh-Hans-CN.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Styles\Styles.xaml">
+    <Page Include="Resources\Strings\zh-CN.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,7 +234,7 @@
     <Resource Include="Resources\Fonts\Font Awesome 5-Regular.otf" />
     <Resource Include="Resources\Fonts\Font Awesome 5-Solid.otf" />
     <Resource Include="Resources\Strings\en-US.xml" />
-    <Resource Include="Resources\Strings\zh-Hans-CN.xml" />
+    <Resource Include="Resources\Strings\zh-CN.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
