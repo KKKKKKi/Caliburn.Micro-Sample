@@ -4,10 +4,6 @@
 
 ### 应用截图
 
-![Drag and Drop](./images/Snipaste_2018-09-30_16-40-53.png)
+![main view](./images/Snipaste_2018-10-12_14-45-23.png)
 
-![Settings](./images/Snipaste_2018-09-30_16-41-14.png)
-
-![Conductor window](./images/Snipaste_2018-09-30_16-46-33.png)
-
-![Sample Window](./images/Snipaste_2018-09-30_16-41-46.png)
+![all windows](./images/Snipaste_2018-10-12_14-46-26.png)
