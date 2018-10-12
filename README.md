@@ -6,4 +6,4 @@
 
 ![main view](./images/Snipaste_2018-10-12_14-45-23.png)
 
-![all windows](./images/Snipaste_2018-10-12_14-46-26.png)
+![all windows](./images/Snipaste_2018-10-12_14-51-29.png)
