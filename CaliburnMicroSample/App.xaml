@@ -15,7 +15,7 @@
                 <!-- 这里默认加载的是中文，方便在设计模式下使用 -->
                 <ResourceDictionary>
                     <XmlDataProvider x:Key="Strings" 
-                                     Source="pack://application:,,,/Resources/Strings/zh-Hans-CN.xml"
+                                     Source="pack://application:,,,/Resources/Strings/zh-CN.xml"
                                      XPath="language/strings"
                                      IsAsynchronous="False" />
                 </ResourceDictionary>

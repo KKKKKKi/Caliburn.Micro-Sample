@@ -6,6 +6,7 @@
     <string key="OpenFile">Open File</string>
     <string key="SaveFile">Save File</string>
     <string key="ConductorWindow">Show Conductor window(Enter)</string>
+    <string key="MsgApiWindow">Message Api Window</string>
     <string key="SampleWindow">Sample Window</string>
     <string key="Settings">Settings</string>
     <string key="AppExit">Exit(Ctrl+Alt+X)</string>

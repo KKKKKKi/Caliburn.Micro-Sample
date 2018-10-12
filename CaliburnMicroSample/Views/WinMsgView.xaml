@@ -1,0 +1,93 @@
+﻿<kx:Window2D 
+    x:Class="CaliburnMicroSample.Views.WinMsgView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:kx="clr-namespace:KXControls;assembly=KXControls"
+    xmlns:local="clr-namespace:CaliburnMicroSample.Views"
+    mc:Ignorable="d"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterOwner"
+    Style="{StaticResource TransparentWindow}"
+    MinWidth="240" MinHeight="420"
+    Width="300" Height="450">
+    <kx:Window2D.Title>
+        <Binding Source="{StaticResource Strings}" XPath="string[@key='MsgApiWindow']" />
+    </kx:Window2D.Title>
+    
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="CustomButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="MinWidth" Value="48" />
+                <Setter Property="MinHeight" Value="24" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#694D9F" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="LayoutRoot"
+                                    Width="{TemplateBinding Width}"
+                                    Height="{TemplateBinding Height}"
+                                    Background="{TemplateBinding Background}"
+                                    Padding="{TemplateBinding Padding}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="Transparent">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="LayoutRoot" Property="Background" Value="#867892" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="LayoutRoot" Property="Background" Value="#6f60aa" />
+                                    <Setter TargetName="LayoutRoot" Property="BorderBrush" Value="#33a3dc" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="LayoutRoot" Property="Background">
+                                        <Setter.Value>
+                                            <RadialGradientBrush Center="0.5 0.5" Opacity="0.8">
+                                                <GradientStopCollection>
+                                                    <GradientStop Offset="0" Color="#6950a1" />
+                                                    <GradientStop Offset="1" Color="#9b95c9" />
+                                                </GradientStopCollection>
+                                            </RadialGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="LayoutRoot" Property="BorderBrush" Value="#33a3dc" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0 0" EndPoint="1 1" Opacity="0.8">
+                <GradientStopCollection>
+                    <GradientStop Offset="0" Color="#f05b72" />
+                    <GradientStop Offset="1" Color="#f15a22" />
+                </GradientStopCollection>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBox x:Name="WindowName" 
+                     Width="120" Height="24" 
+                     Margin="0 0 0 5" 
+                     VerticalContentAlignment="Center" />
+            <Button x:Name="SendMsg" Style="{StaticResource CustomButtonStyle}">
+                <Binding Source="{StaticResource Strings}" XPath="string[@key='SendMessage']" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</kx:Window2D>

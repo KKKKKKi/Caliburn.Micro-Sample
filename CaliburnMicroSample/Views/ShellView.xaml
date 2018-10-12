@@ -142,14 +142,25 @@
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='ConductorWindow']" />
                 </Button.ToolTip>
             </Button>
+
+            <Button x:Name="WinMsgWindow"
+                    Style="{StaticResource IconButtonStyle}"
+                    Content="&#xF086;"
+                    DockPanel.Dock="Left">
+                <Button.ToolTip>
+                    <Binding Source="{StaticResource Strings}" XPath="string[@key='MsgApiWindow']" />
+                </Button.ToolTip>
+            </Button>
+            
             <Button x:Name="SampleWindow"
                     Style="{StaticResource IconButtonStyle}"
-                    Content="&#xF2DC;"
+                    Content="&#xF094;"
                     DockPanel.Dock="Left">
                 <Button.ToolTip>
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='SampleWindow']" />
                 </Button.ToolTip>
             </Button>
+
             <Button x:Name="MenuButton" 
                     Style="{StaticResource IconButtonStyle}"
                     FontFamily="pack://application:,,,/Resources/Fonts/#Font Awesome 5 Free Solid"

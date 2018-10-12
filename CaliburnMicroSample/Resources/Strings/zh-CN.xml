@@ -6,6 +6,7 @@
     <string key="OpenFile">打开文件</string>
     <string key="SaveFile">保存文件</string>
     <string key="ConductorWindow">打开Conductor窗口(Enter)</string>
+    <string key="MsgApiWindow">Message Api 窗口</string>
     <string key="SampleWindow">Sample 窗口</string>
     <string key="Settings">设置</string>
     <string key="AppExit">退出(Ctrl+Alt+X)</string>

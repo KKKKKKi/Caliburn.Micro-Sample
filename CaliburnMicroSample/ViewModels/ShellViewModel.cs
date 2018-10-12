@@ -58,6 +58,12 @@
             _windowManager.ShowWindow(IoC.Get<SampleViewModel>(nameof(SampleViewModel)));
         }
 
+        public void WinMsgWindow()
+        {
+            // 函数名不能出现 "Action" 字样
+            _windowManager.ShowWindow(IoC.Get<WinMsgViewModel>(nameof(WinMsgViewModel)));
+        }
+
         public void RegisterFrame(Frame frame)
         {
             _navigationService = new FrameAdapter(frame);

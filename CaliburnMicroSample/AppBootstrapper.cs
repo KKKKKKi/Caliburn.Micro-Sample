@@ -39,7 +39,8 @@
                 .Singleton<MainViewModel>(key: nameof(MainViewModel))
                 .Singleton<SettingViewModel>(key: nameof(SettingViewModel))
                 .PerRequest<ConductorViewModel>(key: nameof(ConductorViewModel))
-                .Singleton<SampleViewModel>(key: nameof(SampleViewModel));
+                .Singleton<SampleViewModel>(key: nameof(SampleViewModel))
+                .Singleton<WinMsgViewModel>(key: nameof(WinMsgViewModel));
 
             // Key Bindings Convertion
             /*********************************************************************************************/
