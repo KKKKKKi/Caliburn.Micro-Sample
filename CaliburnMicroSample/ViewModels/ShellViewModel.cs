@@ -1,6 +1,7 @@
 ﻿namespace CaliburnMicroSample.ViewModels
 {
     using Caliburn.Micro;
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using Models;
@@ -47,21 +48,13 @@
                 (b, p) => { });
         }
 
-        public void ConductorWindow()
+        public void ShowWindow(Type name)
         {
-            _windowManager.ShowWindow(IoC.Get<ConductorViewModel>(nameof(ConductorViewModel)));
-        }
-
-        public void SampleWindow()
-        {
-            // 函数名不能出现 "Action" 字样
-            _windowManager.ShowWindow(IoC.Get<SampleViewModel>(nameof(SampleViewModel)));
-        }
-
-        public void WinMsgWindow()
-        {
-            // 函数名不能出现 "Action" 字样
-            _windowManager.ShowWindow(IoC.Get<WinMsgViewModel>(nameof(WinMsgViewModel)));
+            Screen rootModel = _container.GetInstance(name, name.Name) as Screen;
+            if (!rootModel.IsActive)
+            {
+                _windowManager.ShowWindow(rootModel);
+            }
         }
 
         public void RegisterFrame(Frame frame)

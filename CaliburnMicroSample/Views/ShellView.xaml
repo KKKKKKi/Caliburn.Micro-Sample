@@ -3,10 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:kx="clr-namespace:KXControls;assembly=KXControls"
     xmlns:v="clr-namespace:CaliburnMicroSample.Views"
+    xmlns:vm="clr-namespace:CaliburnMicroSample.ViewModels"
     mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
     Icon="../favicon.ico"
@@ -133,32 +135,50 @@
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='SaveFile']" />
                 </Button.ToolTip>
             </Button>
-            <Button x:Name="ConductorWindow" 
-                    Style="{StaticResource IconButtonStyle}" 
+            <Button Style="{StaticResource IconButtonStyle}" 
                     Content="&#xF2D2;"
                     DockPanel.Dock="Left">
                 <!-- ToolTip="{DynamicResource NewWindow}" -->
                 <Button.ToolTip>
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='ConductorWindow']" />
                 </Button.ToolTip>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ShowWindow">
+                            <cal:Parameter Value="{x:Type vm:ConductorViewModel}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
 
-            <Button x:Name="WinMsgWindow"
-                    Style="{StaticResource IconButtonStyle}"
+            <Button Style="{StaticResource IconButtonStyle}"
                     Content="&#xF086;"
                     DockPanel.Dock="Left">
                 <Button.ToolTip>
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='MsgApiWindow']" />
                 </Button.ToolTip>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ShowWindow">
+                            <cal:Parameter Value="{x:Type vm:WinMsgViewModel}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
             
-            <Button x:Name="SampleWindow"
-                    Style="{StaticResource IconButtonStyle}"
+            <Button Style="{StaticResource IconButtonStyle}"
                     Content="&#xF094;"
                     DockPanel.Dock="Left">
                 <Button.ToolTip>
                     <Binding Source="{StaticResource Strings}" XPath="string[@key='SampleWindow']" />
                 </Button.ToolTip>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ShowWindow">
+                            <cal:Parameter Value="{x:Type vm:SampleViewModel}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
 
             <Button x:Name="MenuButton" 

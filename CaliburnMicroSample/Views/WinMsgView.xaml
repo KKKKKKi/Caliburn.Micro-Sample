@@ -4,14 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cal="http://www.caliburnproject.org"
     xmlns:kx="clr-namespace:KXControls;assembly=KXControls"
+    xmlns:design="clr-namespace:CaliburnMicroSample.Design"
     xmlns:local="clr-namespace:CaliburnMicroSample.Views"
     mc:Ignorable="d"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterOwner"
     Style="{StaticResource TransparentWindow}"
     MinWidth="240" MinHeight="420"
-    Width="300" Height="450">
+    Width="300" Height="450"
+    d:DataContext="{d:DesignInstance Type={x:Type design:WinMsgViewModel}, IsDesignTimeCreatable=True}"
+    cal:Bind.AtDesignTime="True">
     <kx:Window2D.Title>
         <Binding Source="{StaticResource Strings}" XPath="string[@key='MsgApiWindow']" />
     </kx:Window2D.Title>

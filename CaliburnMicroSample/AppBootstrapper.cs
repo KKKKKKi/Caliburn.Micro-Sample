@@ -1,14 +1,10 @@
 ﻿namespace CaliburnMicroSample
 {
     using Caliburn.Micro;
-    // using Newtonsoft.Json;
-    using YamlDotNet.Serialization;
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Windows;
     using System.Windows.Input;
-    using System.Windows.Resources;
     using System.Windows.Threading;
     using Input;  // Key Bindings Convertion
     using Models;
@@ -38,7 +34,7 @@
                 .PerRequest<DragDropViewModel>(key: nameof(DragDropViewModel))
                 .Singleton<MainViewModel>(key: nameof(MainViewModel))
                 .Singleton<SettingViewModel>(key: nameof(SettingViewModel))
-                .PerRequest<ConductorViewModel>(key: nameof(ConductorViewModel))
+                .Singleton<ConductorViewModel>(key: nameof(ConductorViewModel))
                 .Singleton<SampleViewModel>(key: nameof(SampleViewModel))
                 .Singleton<WinMsgViewModel>(key: nameof(WinMsgViewModel));
 
@@ -116,84 +112,15 @@
         #region configs
         /* configs */
         /*********************************************************************************************/
+        
         private void LoadConfigs()
         {
-            // string configfile = Environment.CurrentDirectory + "\\Configs\\Configs.json";
-            string configfile = Environment.CurrentDirectory + "\\Configs\\Configs.yml";
-            if (!File.Exists(configfile))
-            {
-                App.configs = GetDefaultConfigs();
-                return;
-            }
-            // 读方式打开配置文件
-            FileStream fs = new FileStream(configfile, FileMode.Open, FileAccess.Read);
-            StreamReader reader = new StreamReader(fs);
-            // App.configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
-            
-            IDeserializer deserializer = new DeserializerBuilder().Build();
-            try
-            {
-                App.configs = deserializer.Deserialize<Configs>(reader.ReadToEnd());
-            }
-            catch (Exception)
-            {
-                App.configs = null;
-            }
-
-            reader.Close();
-            // 加载配置失败，使用默认配置
-            if (App.configs == null)
-            {
-                App.configs = GetDefaultConfigs();
-                // 获取系统语言
-                string info = System.Globalization.CultureInfo.CurrentCulture.Name;
-                App.configs.Language = info;
-            }
+            App.configs = Configs.LoadConfigs();
         }
 
         private void SaveConfigs()
         {
-            string configfile = Environment.CurrentDirectory + "\\Configs";
-            // 如果目录不存在则创建
-            if (!Directory.Exists(configfile))
-            {
-                Directory.CreateDirectory(configfile);
-            }
-            // configfile += "\\Configs.json";
-            configfile += "\\Configs.yml";
-            // 写入配置文件，新建文件覆盖
-            FileStream fs = new FileStream(configfile, FileMode.Create, FileAccess.Write);
-            StreamWriter writer = new StreamWriter(fs);
-            // string json = JsonConvert.SerializeObject(App.configs, Formatting.Indented);
-            // writer.Write(json);
-
-            ISerializer serializer = new SerializerBuilder().Build();
-            string yaml = serializer.Serialize(App.configs);
-            writer.Write(yaml);
-
-            writer.Flush();
-            writer.Close();
-        }
-
-        /// <summary>
-        /// 默认设置
-        /// </summary>
-        /// <returns>configs</returns>
-        private Configs GetDefaultConfigs()
-        {
-            Configs configs;
-            // string configfile = "pack://application:,,,/Configs/Configs.json";
-            string configfile = "pack://application:,,,/Configs/Configs.yml";
-            StreamResourceInfo stream = Application.GetResourceStream(new Uri(configfile));
-            StreamReader reader = new StreamReader(stream.Stream);
-            // configs = JsonConvert.DeserializeObject<Configs>(reader.ReadToEnd());
-
-            IDeserializer deserializer = new DeserializerBuilder().Build();
-            configs = deserializer.Deserialize<Configs>(reader.ReadToEnd());
-
-            reader.Close();
-
-            return configs;
+            App.configs.SaveConfigs();
         }
 
         // 给设置发送消息
@@ -218,6 +145,7 @@
             IoC.Get<SettingViewModel>(nameof(SettingViewModel)).Cleanup();
             IoC.Get<ConductorViewModel>(nameof(ConductorViewModel)).Cleanup();
             IoC.Get<SampleViewModel>(nameof(SampleViewModel)).Cleanup();
+            IoC.Get<WinMsgViewModel>(nameof(WinMsgViewModel)).Cleanup();
         }
     }
 }
