@@ -63,6 +63,49 @@
         </Setter>
     </Style>
 
+    <Style x:Key="TitleBarTransparentButtonStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Background" Value="#66FFFFFF" />
+        <Setter Property="Width" Value="36" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="LayoutRoot" Background="Transparent">
+                        <Rectangle x:Name="ButtonBackground"
+                                   Fill="{TemplateBinding Background}"
+                                   Opacity="0" />
+                        <Border x:Name="ButtonBorder" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="TitleBarButtonContentPresenter"
+                                              Focusable="False"
+                                              Margin="{TemplateBinding Padding}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                              Visibility="Hidden" />
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="ButtonBackground" Property="Opacity" Value="1" />
+                            <Setter TargetName="TitleBarButtonContentPresenter" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBackground" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="TitleBarButtonContentPresenter" Property="Opacity" Value=".5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type ctrl:Window2D}">
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
@@ -324,7 +367,7 @@
                                     Background="Red"
                                     WindowChrome.IsHitTestVisibleInChrome="True"
                                     Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
-                                    Style="{StaticResource TitleBarButtonStyle}"
+                                    Style="{StaticResource TitleBarTransparentButtonStyle}"
                                     Width="32" Height="32"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Top"
