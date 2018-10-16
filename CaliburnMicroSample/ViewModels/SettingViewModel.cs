@@ -7,10 +7,12 @@
     using System.Xml.Linq;
     using Helpers;
     using Models;
+    using Services;
 
     public class SettingViewModel : Screen, Services.ICleanup, IHandle<SimpleMessage>
     {
         private IEventAggregator _eventAggregator => IoC.Get<IEventAggregator>(nameof(EventAggregator));
+        private ILogService _logService => IoC.Get<ILogService>(nameof(LogService));
 
         /// <summary>
         /// Languages List
@@ -88,6 +90,7 @@
                 if (Set(ref _selectedLanguage, value))
                 {
                     SwitchLanguage(value);  // 切换语言资源
+                    _logService.Info("切换语言");
                 }
             }
         }

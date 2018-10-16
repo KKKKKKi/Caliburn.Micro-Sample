@@ -85,8 +85,16 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.10\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -102,13 +110,13 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.5.2.0\lib\net45\YamlDotNet.dll</HintPath>
-    </Reference>
     <ProjectReference Include="..\CustomControlLib\CustomControlLib.csproj">
       <Project>{98b2a9ec-007f-41f1-b67d-190a53782cf1}</Project>
       <Name>CustomControlLib</Name>
     </ProjectReference>
+    <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.5.2.1\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\Strings\en-US.xaml">
@@ -182,6 +190,8 @@
     <Compile Include="Services\ICleanup.cs" />
     <Compile Include="Services\IDialogServiceEx.cs" />
     <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\ILogService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="ViewModels\SampleViewModel.cs" />
     <Compile Include="ViewModels\ConductorViewModel.cs" />
     <Compile Include="ViewModels\DragDropViewModel.cs" />
@@ -238,6 +248,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Resource Include="favicon.ico" />
     <Resource Include="Configs\Configs.json" />
     <Resource Include="Configs\Configs.yml" />

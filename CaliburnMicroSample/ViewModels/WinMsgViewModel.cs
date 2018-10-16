@@ -23,9 +23,15 @@
             {
                 case MSG_DEF.WM_COPYDATA:
                     COPYDATASTRUCT param = Marshal.PtrToStructure<COPYDATASTRUCT>(lParam);
-                    byte[] buffer = new byte[param.cbData];
-                    Marshal.Copy(param.lpData, buffer, 0, param.cbData);
-                    string content = Encoding.Default.GetString(buffer);
+                    // 不使用自定义结构体
+                    // byte[] buffer = new byte[param.cbData];
+                    // Marshal.Copy(param.lpData, buffer, 0, param.cbData);
+                    // string content = Encoding.Default.GetString(buffer);
+
+                    // 自定义结构体
+                    MYDATASTRUCT data = Marshal.PtrToStructure<MYDATASTRUCT>(param.lpData);
+                    string content = data.content;
+                    // TODO: 数据处理
 #if DEBUG
                     Debug.WriteLine(content);
 #endif
@@ -40,13 +46,22 @@
         /* C++ 中相关代码
          * 向本窗口发送消息
          ...
-         HWND hWnd = FindWindow(NULL, _T("WinMsgView")); // This Window
-         LPCSTR str = "你好Hello";
+         typedef struct tagMYDATASTRUCT
+         {
+             char content[512];
+         } MYDATASTRUCT, * PMYDATASTRUCT;
+         ...
+         MYDATASTRUCT data;
+         memset(data.content, 0, 512);
+         memcpy(data.content, "来自 C++ MFC", 512);
+
          COPYDATASTRUCT cds;
          cds.dwData = 0;
-         cds.cbData = strlen(str);
-         cds.lpData = (LPVOID)str;
-         SendMessage(hWnd, WM_COPYDATA, 0, (LPARAM)&cds);
+         cds.cbData = sizeof(MYDATASTRUCT);
+         cds.lpData = &data;
+
+         HWND hWnd = ::FindWindow(NULL, L"Message Api 窗口");
+         ::SendMessage(hWnd, WM_COPYDATA, 0, (LPARAM)&cds);
          ...
          */
 
@@ -63,7 +78,7 @@
             // WinApiHelper.ShowWindow(hWnd, 5);
             // WinApiHelper.SetForegroundWindow(hWnd);
             // WinApiHelper.SendMessage(hWnd, 0x1081, 0, "msg");
-            MYDATASTRUCT myDATASTRUCT = new MYDATASTRUCT() { content = "Hello 世界" };
+            MYDATASTRUCT myDATASTRUCT = new MYDATASTRUCT() { content = "来自 C# WPF" };
             // 将数据拷贝至非托管内存
             IntPtr myDataPtr = Marshal.AllocHGlobal(Marshal.SizeOf(myDATASTRUCT));
             Marshal.StructureToPtr(myDATASTRUCT, myDataPtr, true);
@@ -86,7 +101,7 @@
         }
 
         /* C++ 中相关代码
-         * 
+         * 处理 WM_COPYDATA 消息
          * Header File(.h)
          ---------------------------------------------------------------------
          ...
@@ -96,7 +111,7 @@
          ---------------------------------------------------------------------
 
          * Source File(.cpp)
-         BEGIN_MESSAGE_MAP(xxxxDlg, CDialogEx)
+         BEGIN_MESSAGE_MAP(CxxxDlg, CDialogEx)
             ...
             ON_WM_COPYDATA()
             ...
@@ -104,7 +119,7 @@
          ...
          ...
          ...
-         BOOL CDLLoaderDlg::OnCopyData(CWnd *pWnd, COPYDATASTRUCT *pCopyDataStruct)
+         BOOL CxxxDlg::OnCopyData(CWnd *pWnd, COPYDATASTRUCT *pCopyDataStruct)
          {
              if (pCopyDataStruct != NULL)
              {
@@ -112,8 +127,8 @@
                  DWORD dwLen = pCopyDataStruct->cbData;
                  char buffer[512] = { 0 };
                  memcpy(buffer, data->content, 512);
-                 // strlen(buffer);
                  // TODO: 数据处理
+                 TRACE(buffer);
              }
 
              return CDialogEx::OnCopyData(pWnd, pCopyDataStruct);

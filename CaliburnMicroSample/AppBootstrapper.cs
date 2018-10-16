@@ -28,7 +28,8 @@
 
             _container.Singleton<IWindowManager, WindowManager>(key: nameof(WindowManager))
                 .Singleton<IEventAggregator, EventAggregator>(key: nameof(EventAggregator))
-                .Singleton<IDialogServiceEx, DialogService>(key: nameof(DialogService));
+                .Singleton<IDialogServiceEx, DialogService>(key: nameof(DialogService))
+                .Singleton<ILogService, LogService>(key: nameof(LogService));
 
             _container.Singleton<ShellViewModel>(key: nameof(ShellViewModel))
                 .PerRequest<DragDropViewModel>(key: nameof(DragDropViewModel))
