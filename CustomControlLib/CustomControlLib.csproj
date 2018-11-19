@@ -78,12 +78,18 @@
   <ItemGroup>
     <Compile Include="Controls\TransitioningContentControl.cs" />
     <Compile Include="Controls\Window2D.cs" />
+    <Compile Include="Controls\WindowBase.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\ResizeModeMinMaxButtonVisibilityConverter.cs" />
     <Compile Include="Helpers\VisualStateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Win32\Constants.cs" />
+    <Compile Include="Win32\Enums.cs" />
+    <Compile Include="Win32\Structs.cs" />
+    <Compile Include="Win32\Win32Api.cs" />
     <!--
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -1,8 +1,8 @@
 ﻿namespace CaliburnMicroSample.Views
 {
     using System;
-    using System.Windows;
     using System.Windows.Interop;
+    using Helpers;
     using ViewModels;
 
     /// <summary>
@@ -20,8 +20,12 @@
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
-            source.AddHook(Vm.WndProc);
+
+            // Add Hook
+            // HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
+            // source.AddHook(Vm.WndProc);
+
+            HwndSource.FromHwnd(new WindowInteropHelper(this).Handle).AddHook(new HwndSourceHook(Vm.WndProc));
         }
     }
 }

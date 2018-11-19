@@ -165,7 +165,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-            
+
             <Button Style="{StaticResource IconButtonStyle}"
                     Content="&#xF094;"
                     DockPanel.Dock="Left">

@@ -5,4 +5,5 @@
     <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
     <conv:NullToVisibilityConverter2 x:Key="NullToVisibilityConverter2" />
+    <conv:ResizeModeMinMaxButtonVisibilityConverter x:Key="ResizeModeMinMaxButtonVisibilityConverter" />
 </ResourceDictionary>
